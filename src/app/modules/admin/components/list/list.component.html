@@ -1,0 +1,65 @@
+<table class="display table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                <div (click)="checkAll()" [ngClass]="{checked: checkedAll === true}" class="icheckbox_minimal-blue" style="position: relative;">
+                    <ins class="iCheck-helper"></ins>
+                </div>
+            </th>
+            <th>STT</th>
+            <th *ngFor="let objHeader of arrHeader" [ngClass]="{sorting: (objHeader.sort), 
+                                sorting_asc: (options.sortValue === 1 && options.sortField === objHeader.name), 
+                                sorting_desc: (options.sortValue === -1 &&  options.sortField === objHeader.name)}" 
+                (click)="sort(objHeader.name, objHeader.sort)">{{objHeader.label}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items; let i = index; trackBy:trackByIndex;">
+            <input type="hidden" class="item-id" [attr.value]="item._id" />
+            <td>
+                <div 
+                    (click)="checkEl(item._id)" 
+                    [ngClass]="{checked: checkedList[item._id]}" 
+                    class="icheckbox_minimal-blue" style="position: relative;">
+                    <ins class="iCheck-helper"></ins>
+                </div>
+            </td>
+            <td>{{rowNumberList[i]}}</td>
+            <td 
+                *ngFor="let column of arrColumns" 
+                [innerHTML]="(column.type !== 'text' ? 
+                    (column | processHtmlColumn: {'item': item, 'componentInfo': componentInfo}): 
+                    item[column.name]) | safeHtml ">
+            </td>
+        </tr>
+        <tr *ngIf="items.length == 0">
+            <td [attr.colspan]="arrColumns.length + 2"><i>Không có dữ liệu</i></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-sm-4 div-bottom-left">
+        <div id="dynamic-table_length" class="dataTables_length">
+            <label>
+                    <select (change)="changeRecoresPerPage($event)" name="recordsPerPage" id="recordsPerPage" class="form-control" size="1">
+                        <option *ngFor="let records of recordsPerPageList" value="{{records}}">{{records}}</option>
+                    </select> records ({{ numOfItem }} entries)
+                </label>
+        </div>
+    </div>
+    <div class="col-sm-8 div-bottom-right pull-right">
+        <div class="wrap-pagination" *ngIf="numOfItem > options.recordsPerPage">
+            <div class="dataTables_paginate paging_bootstrap pagination">
+                <ul>
+                    <li [ngClass]="{disabled: options.page == 1}" class="disabled" (click)="goFirstPage()"><a>«</a></li>
+                    <li [ngClass]="{disabled: options.page == 1}" (click)="goPrevPage()" class="prev"><a>Prev</a></li>
+                    <li [ngClass]="{active: options.page==page}" (click)="goPage(page)" *ngFor="let page of pageList"><a>{{page}}</a></li>
+                    <li [ngClass]="{disabled: options.page == lastPage}" (click)="goNextPage()" class="next"><a>Next</a></li>
+                    <li [ngClass]="{disabled: options.page == lastPage}" (click)="goLastPage()"><a>»</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

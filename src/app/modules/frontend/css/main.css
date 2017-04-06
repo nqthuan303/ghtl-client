@@ -1,0 +1,296 @@
+.nav_tooltip{
+	position:absolute;
+	left:9px;
+	top:35px;
+	z-index:5;
+}
+.show_note{
+	position:absolute;
+	border:#cc9933 solid 1px;
+	background:#ffffcc;
+	color:#000000;
+	padding:5px;
+	width:400px;
+	min-height:50px;
+	left:0px;
+	top:44px;
+}
+#vnt-navation{
+	display:none;
+}
+.main-content{
+	padding-top:0px;
+	margin-top:0px;
+}
+.wide-container {
+    max-width: 690px;
+    height: 325px;
+    margin: 0 auto;
+}
+.slider-container{
+    height: 325px;
+    position: relative;
+}
+/*=======BEGIN LOGIN PANEL==========*/
+.login-panel{
+    width:325px;
+    height:325px;
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:200;
+    background-color:#f05022;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    text-align: center;
+}
+.login-panel .title{
+    font-size: 24px;
+    color: #ffffff;
+    margin-top: 20px;
+}
+#f-login{
+    margin: 20px 0px 0px 0px;
+}
+.login-panel .input-item input{
+    width: 220px;
+    height: 40px;
+    border: none;
+    border-radius:10px;
+		padding-right:10px;
+}
+.login-panel .input-item input[type=text],.login-panel .input-item input[type=password]{
+    padding-left: 40px;
+}
+.login-panel .input-item input.username{
+    background: #ffffff url("../../../../assets/templates/frontend/img/login-username.png") no-repeat left 10px center;
+}
+.login-panel .input-item input.password{
+    background: #ffffff url("../../../../assets/templates/frontend/img/login-password.png") no-repeat left 10px center;
+}
+.login-panel #btnLogin{
+    background-color: #2d2d2c;
+    color: #ffffff;
+    font-size: 18px;
+}
+.login-panel .forget-password a{
+    color: #ffffff;
+    font-size: 12px;
+}
+.login-panel .forget-password span{
+    display: inline-block;
+    color: #ffffff;
+    padding: 0px 10px;
+}
+.login-panel .note{
+    font-size: 14px;
+    color: #000000;
+    padding: 7px 0px 7px 0px;
+    font-weight: bold;
+}
+.login-panel .input-item{
+    margin: 0px 0px 10px 0px;
+}
+/*=======END LOGIN PANEL==========*/
+.slider{
+    width:690px;
+    position:absolute;
+    top:0px;
+    right:0px;
+}
+/*=======SHIPPING FEE - QUICK ORDER=====*/
+.shipping-order-container{
+    margin-top: 20px;
+    padding-bottom: 80px;
+    background: transparent url("../../../../assets/templates/frontend/img/shipping-fee-shadow.png") no-repeat bottom center;
+}
+.f-shipping-fee{
+    width: 650px;
+    float: left;
+}
+.shipping-order-title{
+    font-size: 24px;
+    color: #f05022;
+    text-transform: uppercase;
+}
+.shipping-order-title span{
+	color:#000000;
+}
+table.f-control{
+    width: 100%;
+}
+table.f-control tr td{
+    padding: 10px 0px;
+    vertical-align: middle;
+    width: 260px;
+}
+
+#do_surcharge{
+    color: #ffffff;
+    background-color: #2d2d2c;
+    text-transform: uppercase;
+    border: none;
+    height: 45px;
+		display:inline-block;
+    line-height: 45px;
+    padding: 0px 40px;
+    font-size: 24px;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+}
+#do_surcharge:hover{
+	background:#fb7305;
+}
+.quick-order{
+    width: 320px;
+    float: right;
+}
+.quick-order a.img-container{
+    display: inline-block;
+    border-left: 1px solid #e3e3e3;
+    height: 225px;
+    width: 320px;
+    overflow: hidden;
+}
+a.btn-quick-order{
+    display: inline-block;
+    font-size: 24px;
+    text-transform: uppercase;
+    height: 45px;
+    color: #ffffff;
+    background-color: #f05022;
+    line-height: 45px;
+    word-spacing: 0px;
+    width: 320px;
+    text-align: center;
+    margin-top: 18px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+a.btn-quick-order:hover{
+	background:#454545;
+}
+.list_chargin {
+	margin-top:20px;
+}
+.list_chargin ul{
+	padding-left:120px;
+}
+.list_chargin li{
+	border-bottom:#cccccc solid 1px;
+	line-height:35px;
+	color:#666666;
+	font-size:16px;
+}
+.list_chargin li:last-child{
+	border-bottom:none;
+}
+.list_chargin li .fl{
+	width:40%;
+}
+.list_chargin li .fr{
+	width:55%;
+}
+/* CUSTOMER SERVICE*/
+.customer-service-container{
+    height: 220px;
+    background: transparent url("../../../../assets/templates/frontend/img/customer-service-bg.png") no-repeat top center;
+}
+.customer-service-right{
+    width: 325px;
+    float: right;
+    padding-top: 20px;
+}
+.customer-service-left{
+    width: 675px;
+    float: left;
+}
+.customer-service-item{
+    margin-top: -10px;
+    display: table;
+    width: 125px;
+    float: left;
+    margin-right: 50px;
+}
+.customer-service-item:nth-child(4){
+    margin-right: 0px;
+}
+.customer-service-item:hover a.title{
+    color: #f05022;
+}
+.customer-service-item:hover .icon-container{
+    background: transparent url("../../../../assets/templates/frontend/img/icon-service-item-bg-hover.png") no-repeat center;
+}
+.customer-service-item a.title{
+    display: block;
+    font-size: 16px;
+    text-align: center;
+    color: #333333;
+    padding: 0px 20px;
+    margin-top: 5px;
+}
+.icon-container{
+    display: table;
+    background: transparent url("../../../../assets/templates/frontend/img/icon-service-item-bg.png") no-repeat center;
+    text-align: center;
+    width: 125px;
+    height: 120px;
+}
+.icon-container div{
+    display: table-cell;
+    vertical-align: middle;
+}
+/*============FEE PACKAGE============*/
+.fee-package{
+    margin-top: 30px;
+}
+.fee-package-left{
+    width: 500px;
+    float: left;
+}
+.fee-package-right{
+    width: 500px;
+    float: right;
+}
+.fee-package-left img{
+    max-width: 500px;
+}
+.fee-package-title{
+    text-transform: uppercase;
+    font-size: 24px;
+    color: #666666;
+    text-align: center;
+		padding-bottom:15px;
+}
+.fee-package-item{
+    display: inline-block;
+    width:120px;
+    height:120px;
+    border:3px solid #ececec;
+    text-align:center;
+    margin: 0px 5px;
+}
+.fee-package-item:nth-child(3){
+    margin-right: 0px;
+}
+.fee-package-row{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.fee-package-item a.img-container{
+    display:table;
+    width:120px;
+    height:80px;
+}
+.fee-package-item a.title{
+    display: block;
+    font-size: 12px;
+    color: #666666;
+}
+table tr td{
+    border: none;
+    padding: 0px;
+}

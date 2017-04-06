@@ -1,0 +1,73 @@
+<aside>
+    <div id="sidebar" class="nav-collapse ">
+        <ul class="sidebar-menu" id="nav-accordion">
+            <li>
+                <a routerLinkActive="active" routerLink="/admin/index">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a routerLinkActive="active" routerLink="/admin/calendar">
+                    <i class="fa fa-calendar"></i>
+                    <span>Lịch</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a routerLinkActive="active">
+                    <i class="fa fa-first-order"></i>
+                    <span>Quản lý đơn hàng</span>
+                </a>
+                <ul routerLinkActive="show" class="sub">
+                    <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"><a routerLink="/admin/order">Danh sách đơn hàng</a></li>
+                    <li routerLinkActive="active"><a routerLink="/admin/order/form">Thêm đơn hàng</a></li>
+                    <li routerLinkActive="active"><a routerLink="/admin/orderlog">Trạng thái đơn hàng</a></li>
+                </ul>
+            </li>
+
+            <li class="sub-menu">
+                <a routerLinkActive="active">
+                    <i class="fa fa-handshake-o"></i>
+                    <span>Quản lý khách hàng</span>
+                </a>
+                <ul routerLinkActive="show" class="sub">
+                    <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"><a routerLink="/admin/client">Danh sách khách hàng</a></li>
+                    <li routerLinkActive="active"><a routerLink="/admin/client/form">Thêm khách hàng</a></li>
+                </ul>
+            </li>
+
+            <li class="sub-menu">
+                <a routerLinkActive="active">
+                    <i class="fa fa-truck"></i>
+                    <span>Quản lý chuyến đi</span>
+                </a>
+                <ul routerLinkActive="show" class="sub">
+                    <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"><a routerLink="/admin/shipping">Danh sách chuyến đi</a></li>
+                    <li routerLinkActive="active"><a routerLink="/admin/shipping/form">Thêm chuyến đi</a></li>
+                </ul>
+            </li>
+
+            <li class="sub-menu">
+                <a routerLinkActive="active">
+                    <i class="fa fa-users"></i>
+                    <span>Quản lý User</span>
+                </a>
+                <ul routerLinkActive="show" class="sub">
+                    <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"><a routerLink="/admin/user">Danh sách User</a></li>
+                    <li routerLinkActive="active"><a routerLink="/admin/user/form">Thêm User</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a routerLinkActive="active">
+                    <i class="fa fa-flag"></i>
+                    <span>Thống kê</span>
+                </a>
+                <ul routerLinkActive="show" class="sub">
+                    <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"><a routerLink="/admin/report/client">Khách hàng</a></li>
+                    <li routerLinkActive="active"><a routerLink="/admin/report/order">Đơn hàng</a></li>
+                    <li routerLinkActive="active"><a routerLink="/admin/report/user">User</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</aside>

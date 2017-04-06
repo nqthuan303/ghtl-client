@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Danh sách đơn hàng
+            </header>
+            <div class="panel-body">
+                <div class="adv-table">
+                    <div class="row div-toolbar">
+                        <div class="btn-group">
+                            <button routerLink="/admin/order/form" id="editable-sample_new" class="btn green">
+                                Thêm đơn hàng <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="btn-group pull-right">
+                            <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i></button>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="#">Print</a></li>
+                                <li><a href="#">Save as PDF</a></li>
+                                <li><a href="#">Export to Excel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row div-table-header">
+                        <div class="col-sm-3 div-changestatus">
+                            <form [formGroup]="formChangeStatus" role="form" class="form-inline">
+                                <select formControlName="statusChange" [(ngModel)]="statusChange" class="form-control">
+                                    <option value="0">Chọn trạng thái</option>
+                                    <option *ngFor="let objOrderStatus of orderStatusList" [ngValue]="objOrderStatus._id">{{objOrderStatus.name}}</option>
+                                </select>
+                                <button type="submit" class="btn btn-default">Apply</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-9 div-filter">
+                            <form [formGroup]="formSearch" role="form" (ngSubmit)="adminList.getData(true)" class="form-search form-inline">
+                                <input formControlName="keyword" [(ngModel)]="listOptions.keyword" type="text" class="form-control" aria-controls="dynamic-table">
+                                <select formControlName="clientId" [(ngModel)]="listOptions.clientId" class="form-control">
+                                    <option value="0">Shop</option>
+                                    <option *ngFor="let objClient of clientList" [ngValue]="objClient.value">{{objClient.label}}</option>
+                                </select>
+                                <select formControlName="orderStatusId" [(ngModel)]="listOptions.orderStatusId" class="form-control">
+                                    <option value="0">Status</option>
+                                    <option *ngFor="let objOrderStatus of orderStatusList" [ngValue]="objOrderStatus._id">{{objOrderStatus.name}}</option>
+                                </select>
+                                <select formControlName="districtId" (change)="getWardList()" [(ngModel)]="listOptions.districtId" class="form-control">
+                                    <option value="0">Quận</option>
+                                    <option *ngFor="let objDistrict of districtList" [ngValue]="objDistrict.value">{{objDistrict.label}}</option>
+                                </select>
+                                <select formControlName="wardId" [(ngModel)]="listOptions.wardId" class="form-control">
+                                    <option value="0">Phường</option>
+                                    <option *ngFor="let objWard of wardList" [ngValue]="objWard.value">{{objWard.label}}</option>
+                                </select> 
+                                <button type="submit" class="btn btn-default">Search</button>
+                                <button (click)="clearSearchForm(); adminList.getData(true)" type="button" class="btn btn-danger">Clear</button>
+                            </form>
+                        </div>
+                    </div>
+                    <admin-list 
+                        #adminList
+                        (onChecked)="onChecked($event)" 
+                        [componentInfo]="componentInfo" 
+                        [arrColumns]="arrColumns" 
+                        [arrHeader]="arrHeader"
+                        [options]="listOptions"
+                        [recordsPerPageList]="recordsPerPageList"
+                        [service]="service">
+                    </admin-list>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>

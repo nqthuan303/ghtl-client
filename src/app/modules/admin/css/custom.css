@@ -1,0 +1,14 @@
+.btn-custom{
+    width: 100px;
+    height: 40px;
+}
+.div-bottom-right .wrap-pagination {
+    float: right;
+    display: inline-block;
+}
+.div-table-header {
+    margin-bottom: 10px;
+}
+.div-toolbar {
+    margin-bottom: 10px;
+}

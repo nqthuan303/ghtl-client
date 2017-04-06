@@ -1,0 +1,217 @@
+<!--BEGIN LOGIN PANEL-SLIDER-->
+<div class="slider-container width-1000">
+    <div class="login-panel">
+        <div class="title">Đăng nhập</div>
+        <div class="note">Đăng nhập để quản lý đơn hàng</div>
+        <form id="f-login" name="login" method="post">
+            <div class="input-item">
+                <input type="text" size="45" class="input-text username" value="" name="email" placeholder="Email" />
+            </div>
+            <div class="input-item">
+                <input type="password" size="45" class="input-text password" value="" name="password" placeholder="Password" />
+            </div>
+            <div class="input-item">
+                <input id="btnLogin" name="btnLogin" type="submit" value="Đăng nhập" />
+            </div>
+            <input type="hidden" name="do_login" value="1" />
+        </form>
+        <div class="forget-password">
+            <a>Quên mật khẩu</a>
+            <span>|</span>
+            <a>Tạo tài khoản</a>
+        </div>
+    </div>
+    <div class="slider">
+        <div class="wide-container">
+            <div id="slider_middle" class="nivoSlider">
+                <a target="_blank">
+                    <img src="assets/templates/frontend/img/BANNER_ALOGIAONGAY_NGHI_TET_AM_LICH_2017.jpg" alt="LỊCH NGHỈ TẾT NGUYÊN ĐÁN 2017" />
+                </a>
+                <a target="_self">
+                    <img src="assets/templates/frontend/img/Banner_Alogiaongay_cap_nhat_phi_chuyen_tien.jpg" alt="THÔNG BÁO PHÍ CHUYỂN NGÂN HÀNG" style='display:none' />
+                </a>
+                <a target="_blank">
+                    <img src="assets/templates/frontend/img/Banner_Alogiaongay_9-01.jpg" alt="DỊCH VỤ GIAO HÀNG VÀ THU TIỀN HỘ COD TẠI TPHCM" style='display:none' /></a>
+                <a target="_blank">
+                    <img src="assets/templates/frontend/img/Banner_Alogiaongay_10-01.jpg" alt="DỊCH VỤ GIAO HÀNG VÀ THU TIỀN HỘ COD TẠI TPHCM" style='display:none' />
+                </a>
+                <a target="_blank">
+                    <img src="assets/templates/frontend/img/Banner-alogiaongay.jpg" alt="Banner 3" style='display:none' />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END LOGIN PANEL-SLIDER-->
+<!--BEGIN SHIPPING - QUICK ORDER-->
+<div class="shipping-order-container width-1000">
+    <div class="shipping-order-title"><span>Tính phí</span> vận chuyển nhanh</div>
+    <div class="f-shipping-fee">
+        <form method="post">
+            <table class="f-control">
+                <tr>
+                    <td class="f-label">Nơi nhận hàng</td>
+                    <td>
+                        <select name="d_city" id="d_city"><option value='' >Chọn thành phố</option><option value="2"  >Hồ Chí Minh</option></select>
+                    </td>
+                    <td class="text-right">
+                        <div id="ext_d_state"><select name="d_state" id="d_state"><option value="" selected>Quận huyện</option></select></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="f-label">Nơi giao hàng</td>
+                    <td>
+                        <select name="c_city_1" id="c_city_1"><option value='' >Chọn thành phố</option><option value="2"  >Hồ Chí Minh</option></select>
+                    </td>
+                    <td>
+                        <div id="ext_c_state"><select name="c_state_1" id="c_state_1"><option value="" selected>Quận huyện</option></select></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="f-label">Khối lượng(g)</td>
+                    <td colspan="2">
+                        <input type="text" name="weight_1" id="weight_1" placeholder="Nhập cân nặng hàng hóa" style="width: 525px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="f-label">Kích thuớc(cm)</td>
+                    <td colspan="2">
+                        <div style="position:relative;">
+                            <div style="display:none" id="show_note_long">
+                                <div class="nav_tooltip"><img src="assets/templates/frontend/img/nav_tooltip.png" /></div>
+                                <div class="show_note">Ghi chú chiều dài</div>
+                            </div>
+                            <input type="text" name="long_1" id="long_1" placeholder="Dài(cm)" class="size" />
+                            <input type="text" name="wide_1" id="wide_1" placeholder="Rộng(cm)" class="size" />
+                            <input type="text" name="heigh_1" id="heigh_1" placeholder="Cao(cm)" class="size last" />
+                            <div class="clear"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-center">
+                        <a id="do_surcharge">Tính phí nhanh</a>
+                    </td>
+                </tr>
+            </table>
+            <div id="ext_charging"></div>
+            <input type="hidden" name="price_delivery" id="price_delivery" />
+            <input type="hidden" name="list_aid" id="list_aid" value="" />
+        </form>
+    </div>
+    <div class="quick-order">
+        <a class="img-container">
+            <img src="assets/templates/frontend/img/delivery-box.png" alt="" />
+        </a>
+        <a class="btn-quick-order">Tạo nhanh đơn hàng</a>
+    </div>
+    <div class="clear"></div>
+</div>
+<!--END SHIPPING - QUICK ORDER-->
+<!--BEGIN CUSTOEMR SERVICE-->
+<div class="customer-service-container width-1000">
+    <div class="customer-service-left">
+        <div class="customer-service-item">
+            <div class="icon-container">
+                <a target="_self">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="122px" height="116px"><img src="assets/templates/frontend/img/customer-service-item1.png" alt="Quản lý đơn hàng" /></td>
+                        </tr>
+                    </table>
+                </a>
+            </div>
+            <a class="title">Quản lý đơn hàng</a>
+        </div>
+        <div class="customer-service-item">
+            <div class="icon-container">
+                <a target="_self">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="122px" height="116px"><img src="assets/templates/frontend/img/customer-service-item2.png" alt="Bảng giá vận chuyển" /></td>
+                        </tr>
+                    </table>
+                </a>
+            </div>
+            <a class="title">Bảng giá vận chuyển</a>
+        </div>
+        <div class="customer-service-item">
+            <div class="icon-container">
+                <a target="_self">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="122px" height="116px"><img src="assets/templates/frontend/img/customer-service-item3.png" alt="Hướng dẫn gửi hàng" /></td>
+                        </tr>
+                    </table>
+                </a>
+            </div>
+            <a class="title">Hướng dẫn gửi hàng</a>
+        </div>
+        <div class="customer-service-item">
+            <div class="icon-container">
+                <a target="_self">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="122px" height="116px"><img src="assets/templates/frontend/img/customer-service-item4.png" alt="Quy định vận chuyển" /></td>
+                        </tr>
+                    </table>
+                </a>
+            </div>
+            <a class="title">Quy định vận chuyển</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="customer-service-right">
+        <img src="assets/templates/frontend/img/customer-service-slogan.png" alt="" />
+    </div>
+    <div class="clear"></div>
+</div>
+<!--BEGIN CUSTOMER SERVICE-->
+<!--BEGIN FEE PACKAGE-->
+<div class="fee-package width-1000">
+    <div class="fee-package-left">
+        <img src="assets/templates/frontend/img/slogan.png" alt="" />
+    </div>
+    <div class="fee-package-right">
+        <div class="fee-package-title">GÓI CƯỚC VẬN CHUYỂN</div>
+        <div class="fee-package-content">
+            <div class="fee-package-row">
+                <div class="fee-package-item">
+                    <a class="img-container">
+                        <div class="tbl-cell"><img src="assets/templates/frontend/img/package_1.png" style='max-width:80px;' /></div>
+                    </a>
+                    <a class="title">Gói 6 tiếng</a>
+                </div>
+                <div class="fee-package-item">
+                    <a class="img-container">
+                        <div class="tbl-cell"><img src="assets/templates/frontend/img/package_2.png" style='max-width:80px;' /></div>
+                    </a>
+                    <a class="title">Gói qua ngày</a>
+                </div>
+                <div class="fee-package-item">
+                    <a class="img-container">
+                        <div class="tbl-cell"><img src="assets/templates/frontend/img/package_3.png" style='max-width:80px;' /></div>
+                    </a>
+                    <a class="title">Gói tiết kiệm</a>
+                </div>
+            </div>
+            <div class="fee-package-row">
+                <div class="fee-package-item">
+                    <a class="img-container">
+                        <div class="tbl-cell"><img src="assets/templates/frontend/img/package_4.png" style='max-width:80px;' /></div>
+                    </a>
+                    <a class="title">Gói siêu tốc</a>
+                </div>
+                <div class="fee-package-item">
+                    <a class="img-container">
+                        <div class="tbl-cell"><img src="assets/templates/frontend/img/package_5.png" style='max-width:80px;' /></div>
+                    </a>
+                    <a class="title">Gói giao tối</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<!--END FEE PACKAGE-->
+<div class="clear"></div>

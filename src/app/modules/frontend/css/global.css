@@ -1,0 +1,226 @@
+@font-face{
+	font-family: "DroidSans";
+	src: url('../../../../assets/templates/frontend/fonts/DroidSans.ttf') format('truetype');
+}
+.DroidSans {
+    font-family:"DroidSans"	;
+}
+
+body {
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,blockquote,pre,form,input,textarea {
+    margin: 0px;
+    padding: 0px;
+}
+input:focus,textarea:focus, select:focus {
+    outline: none;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size:100%;
+    font-weight:bold;
+}
+
+.clear {clear: both; font-size: 0px; line-height: 0px; height:0;}
+p {margin:0px;padding:5px 0px;}
+ol,ul {	list-style: none;}
+
+a { text-decoration:none; color:#333333}
+a:hover {  color:#d32691; text-decoration: none; }
+.desc img{
+	max-width:100%;
+	height:auto !important;
+}
+img { border : 0px; }
+input {   color: #2a2a2a;}
+
+.input-wrapper { margin-bottom:5px;}
+.btnwrapper {
+    overflow:hidden;
+    margin-right:10px;
+    float:left;
+}
+.input-warn {border:1px solid #f05022;line-height:20px;	height:18px;}
+.input-ok { border:1px solid #00CC66; line-height:20px;	height:18px;}
+.button {
+	padding:0px 10px;
+	height:30px;
+	line-height:30px;
+	border:1px solid #4d4c4c;
+	background:#4d4c4c;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	white-space:nowrap;
+	vertical-align:middle;
+	cursor:pointer;
+	overflow:visible;
+	min-width:80px;
+	display:inline-block;
+	vertical-align:middle;
+	color:#fff;
+	font-size:12px;
+	font-family:arial;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+.button:hover {
+	border-color:#f05022;background:#f05022;
+	color:#fff;
+}
+
+  
+/* OPTIONAL BUTTON STYLES for applying custom look and feel: */		
+button.btn { 
+padding:0px 10px;
+height:30px;
+border:1px solid #4d4c4c;
+background:#4d4c4c;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+border-radius:5px;
+white-space:nowrap;
+vertical-align:middle;
+cursor:pointer;
+overflow:visible;
+min-width:80px;
+} 	
+button.btn span {
+	display:inline-block;
+	vertical-align:middle;
+	color:#fff;
+	font-size:12px;
+	font-family:arial;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+button.btn:hover, button.btn:focus{
+	border-color:#f05022;background:#f05022;
+}
+.btn-default { background:#d32691; color:#ffffff ; border-color: #d32691; text-transform:uppercase; font-weight:bold; height:30px; line-height:18px; }
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+    color: #ffffff;
+    background-color: #4e4e4e;
+    border-color: #4e4e4e;
+}
+
+
+.textfiled {
+    font-size:12px;
+    height:28px;
+
+}
+.textarea{
+    color:#2a2a2a;
+    line-height:20px;
+    overflow:auto;
+    font-size:12px;
+
+}
+.select{
+    color:#2a2a2a;
+    height:28px;
+}
+
+
+.clearfix:after
+{
+    content: '[DO NOT LEAVE IT IS NOT REAL]';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix{
+    display: inline;
+    position: relative;
+}
+/*\*/
+.clearfix	{
+    display: block;
+}
+
+.fl {float:left;}
+.fr {float:right;}
+.hidden {display:none;}
+.pointer { cursor:pointer;}
+/* -------------------------------------------------------------------
+ format text
+------------------------------------------------------------------- */
+
+.font_err {	color:#f05022;}
+.font_err a:active , .font_err a:link , .font_err a:visited {  text-decoration: none ; color:#f05022}
+.font_err a:hover {  color:#f05022; text-decoration: underline; }
+.font-gay {color:#9c9b9b;}
+.font-red { color:#ed1b24}
+.font-orange { color:#f05022}
+
+/********************* CSS for box_redirect ****************************/
+#box_redirect{ border:1px solid #505050; width:70% ;margin:0px auto;  }
+#box_redirect p { line-height:18px;}
+#box_redirect .top { background:#f05022;border-bottom:1px solid #5C5C5C; color:#FFFFFF;font-size:11px;font-weight:bold;text-transform:uppercase; height:22px;padding:2px; text-align:left; }
+#box_redirect .fontMess {color:#65D700;font-size:12px; font-weight:bold;text-align:center;padding:20px 10px;}
+#box_redirect .mess { background:#383838; color:#FFFFFF;text-align:center}
+#box_redirect .bottom { background:#E4E4E4; color:#000;text-align:center;padding:5px; font-size:12px;}
+
+/********************* CSS for boxMess ****************************/
+#boxMess{  border:1px solid #F08200;padding:2px 5px; background:#FCF5CD }
+#boxMess .font_err { color:#950000;}
+
+/******************** PHAN TRANG **************/
+.vnt-pagination{
+    border-top:1px dotted #eeeeee;
+
+    padding-top:10px;
+    text-align:center;
+}
+.vnt-pagination .pagetotal {
+    font-weight:bold;
+    padding:2px 3px;
+}
+.vnt-pagination a, .vnt-pagination a:visited{
+    padding: 0px 2px;
+    display:inline-block ;
+    text-decoration: none;
+    color: #333333;
+    font-weight:bold;
+    background:url(../../../../assets/templates/frontend/img/page_bg.gif) center no-repeat;
+    width:34px;
+    height:32px;
+    line-height:32px;
+}
+
+.vnt-pagination a:hover, .vnt-pagination a:active{
+    color: #cb0000;
+    text-decoration:none;
+}
+
+.vnt-pagination .pagecur{
+    font-weight: bold;
+    display:inline-block ;
+    padding: 0px 2px;
+    background:url(../../../../assets/templates/frontend/img/page_on.gif) center no-repeat;
+    color: #fff;
+    width:34px;
+    height:32px;
+    line-height:32px;
+}
+
+.vnt-pagination .btnPage{
+    color:#868686;
+    text-align:center;
+    font-weight:bold;
+}
+.vnt-pagination a:visited.btnPage  {
+    color:#868686;
+    font-weight:bold;
+}
+

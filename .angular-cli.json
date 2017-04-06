@@ -1,0 +1,70 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "ghtl"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "assets/libs/bootstrap/css/bootstrap.min.css",
+        "assets/libs/font-awesome/css/font-awesome.min.css",
+        "assets/libs/icheck/blue.css",
+        "assets/libs/ng2-select/ng2-select.css",
+        "assets/libs/daterangepicker/daterangepicker.css",
+        "styles.css"
+      ],
+      "scripts": [
+        "assets/libs/jquery/jquery-3.1.1.min.js",
+        "assets/libs/nicescroll/js/jquery.nicescroll.js",
+        "assets/libs/moment/moment.min.js",
+        "assets/libs/daterangepicker/daterangepicker.js",
+        "assets/templates/admin/js/jquery.dcjqaccordion.2.7.js",
+        "assets/libs/jquery-blockUI/jquery.blockUI.js",
+        "assets/global/js/app.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json"
+    },
+    {
+      "project": "src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "component": {}
+  }
+}

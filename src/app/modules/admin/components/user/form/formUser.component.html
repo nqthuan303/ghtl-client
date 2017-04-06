@@ -1,0 +1,154 @@
+<form [formGroup]="objForm" role="form" (ngSubmit)="formAction()" class="form-horizontal tasi-form">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Thông tin chung
+                    <span class="tools pull-right">
+                    <a class="fa fa-chevron-down"></a>
+                </span>
+                </header>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="shopName" class="control-label col-md-3">Họ Tên: </label>
+                        <div class="col-md-3 col-xs-11">
+                            <input formControlName="name" [(ngModel)]="objData.name" id="shopName" class="form-control form-control-inline input-medium" size="16" type="text"
+                            />
+                            <control-messages [control]="objForm.controls.name"></control-messages>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Thông tin đăng nhập
+                    <span class="tools pull-right">
+                    <a class="fa fa-chevron-down"></a>
+                </span>
+                </header>
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <label for="username" class="control-label col-md-3">Tài khoản: </label>
+                        <div class="col-md-3 col-xs-11">
+                            <input formControlName="username" [(ngModel)]="objData.username" id="username" class="form-control form-control-inline input-medium" size="16" type="text" value="" />
+                            <control-messages [control]="objForm.controls.username"></control-messages>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="control-label col-md-3">Mật khẩu: </label>
+                        <div class="col-md-3 col-xs-11">
+                            <input formControlName="password" [(ngModel)]="objData.password" id="password" class="form-control form-control-inline input-medium" size="16"
+                                type="password" value="" />
+                            <control-messages [control]="objForm.controls.password"></control-messages>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Thông tin liên hệ
+                    <span class="tools pull-right">
+                    <a class="fa fa-chevron-down"></a>
+                </span>
+                </header>
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <label for="phone_number" class="control-label col-md-3">Số điện thoại: </label>
+                        <div class="col-md-3 col-xs-11">
+                            <input formControlName="phone_number" [(ngModel)]="objData.phone_number" id="phone_number" class="form-control form-control-inline input-medium" size="16" type="text" value="" />
+                            <control-messages [control]="objForm.controls.phone_number"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="control-label col-md-3">Địa chỉ</label>
+                        <div class="col-md-4">
+                            <input formControlName="address" [(ngModel)]="objData.address" id="address" size="16" type="text" class="form-control">
+                            <control-messages [control]="objForm.controls.address"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="district_id" class="control-label col-md-3">Quận/Huyện</label>
+                        <div class="col-md-4">
+                            <ng-select 
+                                [(ngModel)]="objData.district_id"
+                                [options]="districtList" 
+                                placeholder="" 
+                                formControlName="district_id" 
+                                (selected)="selectDistrict($event.value)"
+                                (deselected)="deselectDistrict()" 
+                                [allowClear]="true">
+                            </ng-select>
+                            <control-messages [control]="objForm.controls.district_id"></control-messages>
+                        </div>
+                    </div>
+                    <div *ngIf="isWardListAvailable" class="form-group">
+                        <label for="ward_id" class="control-label col-md-3">Phường/Xã</label>
+                        <div class="col-md-4">
+                            <ng-select 
+                                [(ngModel)]="objData.ward_id"
+                                [options]="wardList" 
+                                placeholder="" 
+                                formControlName="ward_id" 
+                                (deselected)="deselectWard()"
+                                [allowClear]="true">
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Thông tin khác
+                    <span class="tools pull-right">
+                    <a class="fa fa-chevron-down"></a>
+                </span>
+                </header>
+                <div class="panel-body">
+                   
+                    <div class="form-group">
+                        <label for="status" class="control-label col-md-3">Trạng thái: </label>
+                        <div class="col-md-3 col-xs-11">
+                            <select id="status" formControlName="status" [(ngModel)]="objData.status" class="form-control">
+                                <option value="1">Hoạt động</option>
+                                <option value="2">Không hoạt động</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <button routerLink="/admin/user" class="btn btn-danger btn-custom pull-left" type="button">
+                <i class="fa fa-arrow-left"></i> Back
+            </button>
+        </div>
+        <div class="col-sm-6">
+            <button [disabled]="!objForm.valid" class="btn btn-default btn-custom pull-right" type="submit">
+                <i class="fa fa-floppy-o"></i> Save
+            </button>
+        </div>
+    </div>
+</form>

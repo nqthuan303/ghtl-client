@@ -1,0 +1,168 @@
+<form [formGroup]="objForm" role="form" (ngSubmit)="formAction()" class="form-horizontal tasi-form">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Thông tin chung
+                    <span class="tools pull-right">
+                    <a class="fa fa-chevron-down"></a>
+                </span>
+                </header>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="client_id" class="control-label col-md-3">Shop</label>
+                        <div class="col-md-3 col-xs-11">
+                            <ng-select 
+                                [(ngModel)]="objData.client_id"
+                                [options]="clientList" 
+                                placeholder="Chọn Shop" 
+                                formControlName="client_id" 
+                                (selected)="selectClient($event.value)"
+                                (deselected)="deselectClient()"
+                                [allowClear]="true">
+                            </ng-select>
+                            
+                            <control-messages [control]="objForm.controls.client_id"></control-messages>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Thông tin người nhận
+                    <span class="tools pull-right">
+                    <a class="fa fa-chevron-down"></a>
+                </span>
+                </header>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="reciever_name" class="control-label col-md-3">Tên người nhận</label>
+                        <div class="col-md-4">
+                            <input formControlName="reciever_name" [(ngModel)]="objData.reciever_name" id="reciever_name" size="16" type="text" class="form-control">
+                            <control-messages [control]="objForm.controls.reciever_name"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reciever_phone" class="control-label col-md-3">Số ĐT người nhận</label>
+                        <div class="col-md-4">
+                            <input 
+                                formControlName="reciever_phone" 
+                                [(ngModel)]="objData.reciever_phone" 
+                                id="reciever_phone" 
+                                size="16" type="text" 
+                                class="form-control" />
+                            <p class="error-message" *ngIf="objForm.controls.reciever_phone.errors">Số điện thoại không hợp lệ</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="control-label col-md-3">Địa chỉ</label>
+                        <div class="col-md-4">
+                            <input formControlName="address" [(ngModel)]="objData.address" id="address" size="16" type="text" class="form-control">
+                            <control-messages [control]="objForm.controls.address"></control-messages>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="district_id" class="control-label col-md-3">Quận/Huyện</label>
+                        <div class="col-md-4">
+                            <ng-select 
+                                [(ngModel)]="objData.district_id"
+                                [options]="districtList" 
+                                placeholder="" 
+                                formControlName="district_id" 
+                                (selected)="selectDistrict($event.value)"
+                                (deselected)="deselectDistrict()"
+                                [allowClear]="true">
+                            </ng-select>
+                            <control-messages [control]="objForm.controls.district_id"></control-messages>
+                        </div>
+                    </div>
+                    <div *ngIf="isWardListAvailable" class="form-group">
+                        <label for="ward_id" class="control-label col-md-3">Phường/Xã</label>
+                        <div class="col-md-4">
+                            <ng-select 
+                                [(ngModel)]="objData.ward_id"
+                                [options]="wardList" 
+                                placeholder="" 
+                                formControlName="ward_id" 
+                                (deselected)="deselectWard()"
+                                [allowClear]="true">
+                            </ng-select>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Thông tin đơn hàng
+                    <span class="tools pull-right">
+                    <a class="fa fa-chevron-down"></a>
+                </span>
+                </header>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="bonus_fee" class="control-label col-md-3">Tiền thu hộ</label>
+                        <div class="col-md-4">
+                            <input formControlName="bonus_fee" [(ngModel)]="objData.bonus_fee" id="bonus_fee" size="16" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ship_fee" class="control-label col-md-3">Cước phí</label>
+                        <div class="col-md-4">
+                            <input formControlName="ship_fee" [(ngModel)]="objData.ship_fee" id="ship_fee" size="16" type="text" class="form-control">
+                            <control-messages [control]="objForm.controls.ship_fee"></control-messages>
+                        </div>
+                    </div>
+                    <div *ngIf="action=='update'" class="form-group">
+                        <label for="orderstatus_id" class="control-label col-md-3">Trạng thái</label>
+                        <div class="col-md-4">
+                            <select formControlName="orderstatus_id" [(ngModel)]="objData.orderstatus_id" id="orderstatus_id" class="form-control"> 
+                                <option *ngFor="let objOrderStatus of orderStatusList" [ngValue]="objOrderStatus._id">{{objOrderStatus.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Ghi chú
+                    <span class="tools pull-right">
+                    <a class="fa fa-chevron-down"></a>
+                </span>
+                </header>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="control-label col-md-3"></label>
+                        <div class="col-md-9">
+                            <textarea id="note" formControlName="note" [(ngModel)]="objData.note" class="form-control" rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <button routerLink="/admin/order" class="btn btn-danger btn-custom pull-left" type="button">
+                <i class="fa fa-arrow-left"></i> Back
+            </button>
+        </div>
+        <div class="col-sm-6">
+            <button [disabled]="!objForm.valid" class="btn btn-default btn-custom pull-right" type="submit">
+                <i class="fa fa-floppy-o"></i> Save
+            </button>
+        </div>
+    </div>
+</form>

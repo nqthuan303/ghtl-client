@@ -1,0 +1,48 @@
+<form role="form" class="form-horizontal tasi-form">
+    <div class="row">
+        <div class="col-sm-6">
+            <section class="panel">
+                <header class="panel-heading">
+                    Danh sách đơn hàng lưu kho
+                    <span class="tools pull-right">
+                    <a class="fa fa-chevron-down"></a>
+                </span>
+                </header>
+                <div class="panel-body">
+                    <div class="adv-table">
+                        <div class="row div-table-header">
+                            <div class="col-sm-9 div-filter">
+                                <div class="search-order-recieve">
+                                    <input type="text" class="form-control" placeholder="Địa chỉ, người liên hệ, ..." />
+                                </div>
+                            </div>
+                        </div>
+                        <admin-list 
+                            #adminList (onChecked)="onChecked($event)" 
+                            [componentInfo]="componentInfo" 
+                            [arrColumns]="arrColumns" 
+                            [arrHeader]="arrHeader"
+                            [options]="listOptions"
+                            [recordsPerPageList]="recordsPerPageList" 
+                            [service]="service">
+                        </admin-list>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+        <div class="col-sm-6">Phải</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <button routerLink="/admin/shipping" class="btn btn-danger btn-custom pull-left" type="button">
+                <i class="fa fa-arrow-left"></i> Back
+            </button>
+        </div>
+        <div class="col-sm-6">
+            <button class="btn btn-default btn-custom pull-right" type="submit">
+                <i class="fa fa-floppy-o"></i> Save
+            </button>
+        </div>
+    </div>
+</form>
