@@ -10,11 +10,19 @@
                 </header>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="shopName" class="control-label col-md-3">Họ Tên: </label>
+                        <label for="shopName" class="control-label col-md-3">Họ Tên (*)</label>
                         <div class="col-md-3 col-xs-11">
-                            <input formControlName="name" [(ngModel)]="objData.name" id="shopName" class="form-control form-control-inline input-medium" size="16" type="text"
-                            />
-                            <control-messages [control]="objForm.controls.name"></control-messages>
+                            <input 
+                                formControlName="name" 
+                                [(ngModel)]="objData.name" 
+                                id="shopName" 
+                                class="form-control form-control-inline input-medium" 
+                                size="16" type="text" />
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.name.errors?.required && submited">
+                                Vui lòng nhập tên User
+                            </p>
                         </div>
                     </div>
 
@@ -35,21 +43,59 @@
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <label for="username" class="control-label col-md-3">Tài khoản: </label>
+                        <label for="username" class="control-label col-md-3">Tên đăng nhập (*) </label>
                         <div class="col-md-3 col-xs-11">
-                            <input formControlName="username" [(ngModel)]="objData.username" id="username" class="form-control form-control-inline input-medium" size="16" type="text" value="" />
-                            <control-messages [control]="objForm.controls.username"></control-messages>
+                            <input 
+                                formControlName="username" 
+                                [(ngModel)]="objData.username" 
+                                id="username" class="form-control form-control-inline input-medium" 
+                                size="16" type="text" value="" />
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.username.errors?.required && submited">
+                                Vui lòng nhập tên đăng nhập
+                            </p>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="password" class="control-label col-md-3">Mật khẩu: </label>
+                    <div *ngIf="action=='add'" class="form-group">
+                        <label for="password" class="control-label col-md-3">Mật khẩu (*)</label>
                         <div class="col-md-3 col-xs-11">
-                            <input formControlName="password" [(ngModel)]="objData.password" id="password" class="form-control form-control-inline input-medium" size="16"
-                                type="password" value="" />
-                            <control-messages [control]="objForm.controls.password"></control-messages>
+                            <input 
+                                formControlName="password" 
+                                [(ngModel)]="objData.password" 
+                                id="password" 
+                                class="form-control form-control-inline input-medium" 
+                                size="16" type="password" value="" />
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.password.errors?.required && submited">
+                                Vui lòng nhập mật khẩu
+                            </p>
                         </div>
                     </div>
+
+                    <div *ngIf="action=='add'" class="form-group">
+                        <label for="rePassword" class="control-label col-md-3">Nhập lại mật khẩu (*)</label>
+                        <div class="col-md-3 col-xs-11">
+                            <input 
+                                formControlName="rePassword" 
+                                id="rePassword" type="password"
+                                class="form-control form-control-inline input-medium" 
+                                size="16" value="" />
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.rePassword.errors?.required && submited">
+                                Vui lòng nhập lại mật khẩu
+                            </p>
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.rePassword.errors?.isEqualPass && objData.password">
+                                Mật khẩu không khớp
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </section>
         </div>
@@ -69,15 +115,29 @@
                     <div class="form-group">
                         <label for="phone_number" class="control-label col-md-3">Số điện thoại: </label>
                         <div class="col-md-3 col-xs-11">
-                            <input formControlName="phone_number" [(ngModel)]="objData.phone_number" id="phone_number" class="form-control form-control-inline input-medium" size="16" type="text" value="" />
-                            <control-messages [control]="objForm.controls.phone_number"></control-messages>
+                            <input 
+                                formControlName="phone_number" 
+                                [(ngModel)]="objData.phone_number" 
+                                id="phone_number" 
+                                class="form-control form-control-inline input-medium" 
+                                size="16" type="text" value="" />
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.phone_number.errors?.required && submited">
+                                Vui lòng nhập số điện thoại
+                            </p>
+
+                            <p class="error-message" *ngIf="objForm.controls.phone_number.errors?.phone">Số điện thoại không hợp lệ</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="address" class="control-label col-md-3">Địa chỉ</label>
                         <div class="col-md-4">
                             <input formControlName="address" [(ngModel)]="objData.address" id="address" size="16" type="text" class="form-control">
-                            <control-messages [control]="objForm.controls.address"></control-messages>
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.address.errors?.required && submited">
+                                Vui lòng nhập địa chỉ
+                            </p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -92,7 +152,10 @@
                                 (deselected)="deselectDistrict()" 
                                 [allowClear]="true">
                             </ng-select>
-                            <control-messages [control]="objForm.controls.district_id"></control-messages>
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.district_id.errors?.required && submited">
+                                Vui lòng chọn Quận/Huyện
+                            </p>
                         </div>
                     </div>
                     <div *ngIf="isWardListAvailable" class="form-group">
@@ -146,7 +209,7 @@
             </button>
         </div>
         <div class="col-sm-6">
-            <button [disabled]="!objForm.valid" class="btn btn-default btn-custom pull-right" type="submit">
+            <button class="btn btn-default btn-custom pull-right" type="submit">
                 <i class="fa fa-floppy-o"></i> Save
             </button>
         </div>

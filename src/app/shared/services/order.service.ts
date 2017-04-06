@@ -12,19 +12,20 @@ export class OrderService {
   ) { }
 
   listItems(options: Object): Promise<any> {
-    
-    let auth =JSON.parse(localStorage.getItem('auth'));
-    let token = auth.token;
-    let headers = new Headers();
+
+    const auth = JSON.parse(localStorage.getItem('auth'));
+    const token = auth.token;
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
     headers.append('Authorization', token);
 
     let url: string = URL + '/order/list';
 
-    for (let key in options) {
-      if (url.includes("?")) {
-        url += "&" + key + "=" + options[key];
+    for (const key in options) {
+      if (url.includes('?')) {
+        url += '&' + key + '=' + options[key];
       } else {
-        url += "?" + key + "=" + options[key];
+        url += '?' + key + '=' + options[key];
       }
     }
 
@@ -34,13 +35,13 @@ export class OrderService {
   }
 
   findOneBy(options: Object): Promise<any> {
-    let auth =JSON.parse(localStorage.getItem('auth'));
+    let auth = JSON.parse(localStorage.getItem('auth'));
     let token = auth.token;
     let headers = new Headers();
     headers.append('Authorization', token);
 
     let url: string = URL + '/order/findOneBy';
-    
+
     for (let key in options) {
       if (url.includes("?")) {
         url += "&" + key + "=" + options[key];
@@ -55,8 +56,8 @@ export class OrderService {
   }
 
   numOfItem(options: Object): Promise<number> {
-    
-    let auth =JSON.parse(localStorage.getItem('auth'));
+
+    let auth = JSON.parse(localStorage.getItem('auth'));
     let token = auth.token;
     let headers = new Headers();
     headers.append('Authorization', token);
@@ -77,35 +78,37 @@ export class OrderService {
   }
 
   add(data: OrderModel): Promise<any> {
-    let auth =JSON.parse(localStorage.getItem('auth'));
+    let auth = JSON.parse(localStorage.getItem('auth'));
     let token = auth.token;
     let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
     headers.append('Authorization', token);
 
     let url: string = URL + '/order/add';
 
     return this.http.post(url, JSON.stringify(data), { headers: headers })
       .toPromise().then(
-        result => { return this.extractData(result); }
+      result => { return this.extractData(result); }
       ).catch(this.handleError);
   }
 
   update(data: any): Promise<any> {
-    let auth =JSON.parse(localStorage.getItem('auth'));
+    let auth = JSON.parse(localStorage.getItem('auth'));
     let token = auth.token;
     let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
     headers.append('Authorization', token);
 
     let url: string = URL + '/order/update/' + data._id;
 
     return this.http.put(url, JSON.stringify(data), { headers: headers })
       .toPromise().then(
-        result => { return this.extractData(result); }
+      result => { return this.extractData(result); }
       ).catch(this.handleError);
   }
 
   updateStatus(data: any): Promise<any> {
-    let auth =JSON.parse(localStorage.getItem('auth'));
+    let auth = JSON.parse(localStorage.getItem('auth'));
     let token = auth.token;
     let headers = new Headers();
     headers.append('Authorization', token);
@@ -114,7 +117,7 @@ export class OrderService {
 
     return this.http.put(url, JSON.stringify(data), { headers: headers })
       .toPromise().then(
-        result => { return this.extractData(result); }
+      result => { return this.extractData(result); }
       ).catch(this.handleError);
   }
 

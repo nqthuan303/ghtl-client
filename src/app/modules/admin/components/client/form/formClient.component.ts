@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { CustomValidators } from 'ng2-validation';
 
 import { DistrictModel } from '../../../../../shared/models/district.model';
 import { WardModel } from '../../../../../shared/models/ward.model';
@@ -22,7 +23,7 @@ export class FormClientComponent {
 
     objForm: FormGroup;
     objData: ClientModel = new ClientModel();
-
+    submited: boolean;
     districtList: Array<DistrictModel> = new Array<DistrictModel>();
     wardList: Array<WardModel> = new Array<WardModel>();
     action: string = 'add';
@@ -37,14 +38,14 @@ export class FormClientComponent {
         vcr: ViewContainerRef,
         private activatedRoute: ActivatedRoute
     ) {
-
+        this.submited = false;
         this.toastr.setRootViewContainerRef(vcr);
 
         this.objForm = formBuilder.group({
             'name': ['', [Validators.required]],
             'contact_name': ['', [Validators.required]],
-            'phone_number': ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
-            'phone_number_2': ['',[Validators.minLength(10),Validators.maxLength(11)]],
+            'phone_number': ['', [Validators.required, CustomValidators.phone('vi-VN')]],
+            'phone_number_2': ['',[CustomValidators.phone('vi-VN')]],
             'district_id': ['', [Validators.required]],
             'ward_id': [''],
             'address': ['', [Validators.required]],
@@ -100,9 +101,12 @@ export class FormClientComponent {
     }
 
     formAction() {
+        this.submited = true;
         if (!this.objForm.valid) {
             return;
         }
+        this.submited = false;
+
         if (this.action === 'add') {
             App.blockUI();
             this.service.add(this.objData).then((result) => {

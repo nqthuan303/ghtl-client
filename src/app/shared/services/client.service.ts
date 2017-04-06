@@ -58,6 +58,7 @@ export class ClientService {
     let auth =JSON.parse(localStorage.getItem('auth'));
     let token = auth.token;
     let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
     headers.append('Authorization', token);
 
     let url: string = URL + '/client/add';
@@ -72,6 +73,7 @@ export class ClientService {
     let auth =JSON.parse(localStorage.getItem('auth'));
     let token = auth.token;
     let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
     headers.append('Authorization', token);
 
     let url: string = URL + '/client/update/' + data._id;

@@ -41,6 +41,7 @@ export class FormOrderComponent implements OnInit {
     params: Params;
     isWardListAvailable: boolean = false;
     orderStatusTemp: string;
+    submited: boolean = false;
 
     constructor(
         @Inject(FormBuilder) formBuilder: FormBuilder,
@@ -66,7 +67,7 @@ export class FormOrderComponent implements OnInit {
             'district_id': ['', [Validators.required]],
             'ward_id': [''],
             'address': ['', [Validators.required]],
-            'bonus_fee': '',
+            'bonus_fee': ['', [CustomValidators.number]],
             'ship_fee': ['', [Validators.required]],
             'orderstatus_id': '',
             'note': ''
@@ -150,10 +151,11 @@ export class FormOrderComponent implements OnInit {
 
     formAction() {
         let $this = this;
+        this.submited = true;
         if (!this.objForm.valid) {
             return;
         }
-
+        this.submited = false;
         if (this.action === 'add') {
             App.blockUI();
             this.service.add(this.objData).then((result) => {

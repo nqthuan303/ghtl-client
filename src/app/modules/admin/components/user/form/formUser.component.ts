@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { CustomValidators } from 'ng2-validation';
 
 import { DistrictModel } from '../../../../../shared/models/district.model';
 import { WardModel } from '../../../../../shared/models/ward.model';
@@ -21,7 +22,7 @@ export class FormUserComponent {
 
     objForm: FormGroup;
     objData: UserModel = new UserModel();
-
+    submited: boolean;
     districtList: Array<DistrictModel> = new Array<DistrictModel>();
     wardList: Array<WardModel> = new Array<WardModel>();
     action: string = 'add';
@@ -37,17 +38,18 @@ export class FormUserComponent {
         vcr: ViewContainerRef,
         private activatedRoute: ActivatedRoute
     ) {
-
+        this.submited = false;
         this.toastr.setRootViewContainerRef(vcr);
         this.objForm = formBuilder.group({
             'name': ['', [Validators.required]],
             'username': ['', [Validators.required]],
             'password': ['', [Validators.required]],
-            'phone_number': ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
+            'rePassword': ['', [Validators.required, this.checkRePassword]],
+            'phone_number': ['', [Validators.required, CustomValidators.phone('vi-VN')]],
             'district_id': ['', [Validators.required]],
             'ward_id': [''],
             'address': ['', [Validators.required]],
-            'status': ['', [Validators.required]]
+            'status': ['']
         });
     }
 
@@ -59,6 +61,9 @@ export class FormUserComponent {
 
         if (this.params['id']) {
             this.action = 'update';
+            this.objForm.get('password').setValidators(null);
+            this.objForm.get('rePassword').setValidators(null);
+
             this.objData = this.activatedRoute.snapshot.data['dataResolve'];
 
             let $this = this;
@@ -68,6 +73,13 @@ export class FormUserComponent {
         }
 
         this.districtList = this.activatedRoute.snapshot.data['districtResolve'];
+    }
+
+    checkRePassword(control: any) {
+        if (control.value === control.root.value.password || !control.value) {
+            return null;
+        }
+        return { "isEqualPass": true };
     }
 
     getWardList(districtId: string) {
@@ -95,9 +107,11 @@ export class FormUserComponent {
     }
 
     formAction() {
+        this.submited = true;
         if (!this.objForm.valid) {
             return;
         }
+        this.submited = false;
         if (this.action === 'add') {
             this.service.add(this.objData).then((result) => {
                 if (result.statusCode == 0) {

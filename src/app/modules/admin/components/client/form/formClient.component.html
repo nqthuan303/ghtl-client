@@ -10,19 +10,29 @@
                 </header>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="shopName" class="control-label col-md-3">Tên Shop: </label>
+                        <label for="shopName" class="control-label col-md-3">Tên Shop (*)</label>
                         <div class="col-md-3 col-xs-11">
-                            <input formControlName="name" [(ngModel)]="objData.name" id="shopName" class="form-control form-control-inline input-medium" size="16" type="text"
-                            />
-                            <control-messages [control]="objForm.controls.name"></control-messages>
+                            <input 
+                                formControlName="name" 
+                                [(ngModel)]="objData.name" 
+                                id="shopName" class="form-control form-control-inline input-medium" 
+                                size="16" type="text" />
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.name.errors?.required && submited">
+                                Vui lòng nhập tên Shop
+                            </p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="link" class="control-label col-md-3">Địa chỉ website: </label>
                         <div class="col-md-3 col-xs-11">
-                            <input formControlName="link" [(ngModel)]="objData.link" id="link" class="form-control form-control-inline input-medium" size="16" type="text" />
-                            <control-messages [control]="objForm.controls.link"></control-messages>
+                            <input 
+                                formControlName="link" 
+                                [(ngModel)]="objData.link" id="link" 
+                                class="form-control form-control-inline input-medium" 
+                                size="16" type="text" />
                         </div>
                     </div>
 
@@ -43,28 +53,50 @@
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <label for="contact_name" class="control-label col-md-3">Người liên hệ: </label>
+                        <label for="contact_name" class="control-label col-md-3">Người liên hệ (*)</label>
                         <div class="col-md-3 col-xs-11">
-                            <input formControlName="contact_name" [(ngModel)]="objData.contact_name" id="contact_name" class="form-control form-control-inline input-medium" size="16" type="text" />
-                            <control-messages [control]="objForm.controls.contact_name"></control-messages>
+                            <input 
+                                formControlName="contact_name" 
+                                [(ngModel)]="objData.contact_name" 
+                                id="contact_name" 
+                                class="form-control form-control-inline input-medium" 
+                                size="16" type="text" />
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.contact_name.errors?.required && submited">
+                                Vui lòng nhập tên người liên hệ
+                            </p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="phone_number" class="control-label col-md-3">Số điện thoại 1: </label>
                         <div class="col-md-3 col-xs-11">
-                            <input formControlName="phone_number" [(ngModel)]="objData.phone_number" id="phone_number" class="form-control form-control-inline input-medium" size="16" type="text"
-                                value="" />
-                            <control-messages [control]="objForm.controls.phone_number"></control-messages>
+                            <input 
+                                formControlName="phone_number" 
+                                [(ngModel)]="objData.phone_number" 
+                                id="phone_number" 
+                                class="form-control form-control-inline input-medium" 
+                                size="16" type="text" />
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.phone_number.errors?.required && submited">
+                                Vui lòng nhập số điện thoại
+                            </p>
+
+                            <p class="error-message" *ngIf="objForm.controls.phone_number.errors?.phone">Số điện thoại không hợp lệ</p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="phone_number_2" class="control-label col-md-3">Số điện thoại 2: </label>
                         <div class="col-md-3 col-xs-11">
-                            <input formControlName="phone_number_2" [(ngModel)]="objData.phone_number_2" id="phone_number_2" class="form-control form-control-inline input-medium" size="16"
-                                type="text" value="" />
-                            <control-messages [control]="objForm.controls.phone_number_2"></control-messages>
+                            <input 
+                                formControlName="phone_number_2" 
+                                [(ngModel)]="objData.phone_number_2" 
+                                id="phone_number_2" 
+                                class="form-control form-control-inline input-medium" size="16"
+                                type="text" />
+                            <p class="error-message" *ngIf="objForm.controls.phone_number_2.errors?.phone">Số điện thoại không hợp lệ</p>
                         </div>
                     </div>
                 </div>
@@ -87,7 +119,10 @@
                         <label for="address" class="control-label col-md-3">Địa chỉ</label>
                         <div class="col-md-4">
                             <input formControlName="address" [(ngModel)]="objData.address" id="address" size="16" type="text" class="form-control">
-                            <control-messages [control]="objForm.controls.address"></control-messages>
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.address.errors?.required && submited">
+                                Vui lòng nhập địa chỉ
+                            </p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -102,7 +137,11 @@
                                 (deselected)="deselectDistrict()" 
                                 [allowClear]="true">
                             </ng-select>
-                            <control-messages [control]="objForm.controls.district_id"></control-messages>
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.district_id.errors?.required && submited">
+                                Vui lòng chọn Quận/Huyện
+                            </p>
                         </div>
                     </div>
                     <div *ngIf="isWardListAvailable" class="form-group">
@@ -220,7 +259,7 @@
             </button>
         </div>
         <div class="col-sm-6">
-            <button [disabled]="!objForm.valid" class="btn btn-default btn-custom pull-right" type="submit">
+            <button class="btn btn-default btn-custom pull-right" type="submit">
                 <i class="fa fa-floppy-o"></i> Save
             </button>
         </div>
