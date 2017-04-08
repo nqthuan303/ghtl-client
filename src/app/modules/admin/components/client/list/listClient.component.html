@@ -21,7 +21,30 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="row div-table-header">
+                        <div class="col-sm-12 div-filter">
+                            <form [formGroup]="formSearch" role="form" class="form-search form-inline">
+                                <input 
+                                    (keyup.enter)="adminList.getData(true)" 
+                                    formControlName="keyword" 
+                                    placeholder="người liên hệ, địa chỉ" 
+                                    [(ngModel)]="listOptions.keyword" 
+                                    type="text" class="form-control" 
+                                    aria-controls="dynamic-table" />
+
+                                <select formControlName="districtId" (change)="adminList.getData(true); getWardList();" [(ngModel)]="listOptions.districtId" class="form-control">
+                                    <option value="0">Quận</option>
+                                    <option *ngFor="let objDistrict of districtList" [ngValue]="objDistrict.value">{{objDistrict.label}}</option>
+                                </select>
+                                <select *ngIf="wardList && wardList.length > 0" (change)="adminList.getData(true)" formControlName="wardId" [(ngModel)]="listOptions.wardId" class="form-control">
+                                    <option value="0">Phường</option>
+                                    <option *ngFor="let objWard of wardList" [ngValue]="objWard.value">{{objWard.label}}</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
                     <admin-list 
+                        #adminList
                         (onChecked)="onChecked($event)" 
                         [componentInfo]="componentInfo" 
                         [arrColumns]="arrColumns" 
@@ -35,4 +58,5 @@
             </div>
         </section>
     </div>
+    <confirm-modal (onConfirm)="onConfirmModal()" #confirmModal></confirm-modal>
 </div>
