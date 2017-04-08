@@ -1,0 +1,25 @@
+<div class="modal fade" bsModal #modalDirective="bs-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Are you sure?</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalDirective.hide()">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ confirmTitle }}
+            </div>
+            <div class="modal-footer">
+                <button (click)="modalDirective.hide()" class="btn btn-danger" type="button">
+                    <i class="fa fa-times"></i>
+                    Cancel
+                </button>
+                <button (click)="confirm()" class="btn btn-success" type="button">
+                    <i class="fa fa-check"></i>
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

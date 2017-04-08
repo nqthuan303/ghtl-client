@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, AfterViewInit, ViewContainerRef, ViewChild  } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ModalDirective } from 'ngx-bootstrap/modal';
+
 
 import { OrderService } from '../../../../../shared/services/order.service';
 import { ClientService } from '../../../../../shared/services/client.service';
@@ -25,7 +25,7 @@ declare var App: any;
     providers: [OrderLogService]
 })
 export class ListOrderComponent implements OnInit {
-    @ViewChild('confirmModal') private confirmModal: ModalDirective;
+    @ViewChild('confirmModal') private confirmModal: any;
     @ViewChild('adminList') private adminList: any;
     
     objData: OrderModel = new OrderModel();
@@ -43,10 +43,10 @@ export class ListOrderComponent implements OnInit {
     checkedList: any = {};
     recordsPerPageList: Array<number> = [10, 25, 50];
 
+    confirmAction: string;
     selectedItemId: string;
     selectedStatusId: string;
-    confirmTitle: string;
-    confirmAction: string;
+    
 
     listOptions: any = {
         "recordsPerPage": this.recordsPerPageList[0],
@@ -138,7 +138,7 @@ export class ListOrderComponent implements OnInit {
         };
 
         this.service.updateStatus(dataUpdate).then((result) => {
-            this.confirmModal.hide();
+            this.confirmModal.hideModal();
             if (result.statusCode == 0) {
                 this.toastr.success('Trạng thái của đơn hàng được cập nhật thành công!', result.message);
             } else {
@@ -155,10 +155,10 @@ export class ListOrderComponent implements OnInit {
             } else {
                 this.toastr.error('Đã xảy ra lỗi trong quá trình xóa đơn hàng!', data.message);
             }
-            this.confirmModal.hide();
+            this.confirmModal.hideModal();
         });
     }
-    confirm() {
+    onConfirmModal() {
         switch(this.confirmAction){
             case 'updateOrderStatus':
                 this.updateOrderStatus();
@@ -168,23 +168,23 @@ export class ListOrderComponent implements OnInit {
                 break;
         }
     }
+
     ngAfterViewInit() {
         let $this = this;
 
-        $('body').on('change', '.slb-orderstatus', function (e) {
-            $this.confirmTitle = 'Xác nhận cập nhật trạng thái đơn hàng?';
+        $('admin-list-order').on('change', '.slb-orderstatus', function (e) {
             $this.confirmAction = 'updateOrderStatus';
 
             $this.selectedItemId = this.parentNode.parentNode.children[0].value;
             $this.selectedStatusId = this.parentNode.children[0].value;
-            $this.confirmModal.show();
+            $this.confirmModal.showModal({ confirmTitle:  'Xác nhận cập nhật trạng thái đơn hàng?' });
         });
 
-        $('body').on('click', '.btn-delete', function (e) {
-            $this.confirmTitle = 'Xác nhận xóa đơn hàng?';
-            $this.confirmAction = 'deleteOrder';
+        $('admin-list-order').on('click', '.btn-delete', function (e) {
             $this.selectedItemId = this.parentNode.parentNode.children[0].value;
-            $this.confirmModal.show();
+            $this.confirmAction = 'deleteOrder';
+
+            $this.confirmModal.showModal({ confirmTitle: 'Xác nhận xóa đơn hàng?' });
         });
 
     }

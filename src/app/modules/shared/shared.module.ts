@@ -1,18 +1,14 @@
-import { NgModule,CUSTOM_ELEMENTS_SCHEMA }       from '@angular/core';
-import { CommonModule }   from '@angular/common';
-import { FormsModule,ReactiveFormsModule }    from '@angular/forms';
-import { ValidationService } from '../../shared/services/validation.service';
-import { ControlMessagesComponent } from './components/control-messages.component';
+import { NgModule }       from '@angular/core';
+import { ModalModule } from 'ngx-bootstrap';
+import { ConfirmModalComponent } from './components/confirmModal.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule
+    ModalModule.forRoot()
   ],
   declarations: [
-    ControlMessagesComponent
+    ConfirmModalComponent
   ],
-  exports:[ControlMessagesComponent]
+  exports:[ ConfirmModalComponent ]
 })
 export class SharedModule {}

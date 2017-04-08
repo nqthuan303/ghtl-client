@@ -7,7 +7,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { SelectModule } from 'angular2-select';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
-import { ModalModule } from 'ngx-bootstrap';
+
 
 /*========== import services ===========*/
 import { OrderService } from '../../shared/services/order.service';
@@ -73,7 +73,6 @@ import { FormShippingComponent } from './components/shipping/form/formShipping.c
     CommonModule,
     SelectModule,
     ToastModule.forRoot(),
-    ModalModule.forRoot(),
     SharedModule,
     AdminRoutingModule
   ],
