@@ -3,12 +3,14 @@ import 'rxjs/add/operator/toPromise';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { URL } from './app.config';
 import { UserModel } from '../models/user.model';
+import { CommonService } from './common.service';
 
 @Injectable()
 export class UserService {
 
   constructor(
-    private http: Http
+    private http: Http,
+    private commonService: CommonService
   ) { }
 
   listItems(options: Object): Promise<any> {
@@ -19,17 +21,10 @@ export class UserService {
 
     let url: string = URL + '/user/list';
 
-    for (let key in options) {
-      if (url.includes("?")) {
-        url += "&" + key + "=" + options[key];
-      } else {
-        url += "?" + key + "=" + options[key];
-      }
-    }
+    url = this.commonService.getUrl(url, options);
 
-    return this.http.get(url, { headers: headers }).toPromise().then(
-      result => { return this.extractData(result); }
-    ).catch(this.handleError);
+    return this.http.get(url, { headers: headers }).toPromise()
+      .then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
   }
 
   findOneBy(options: Object): Promise<any> {
@@ -40,17 +35,10 @@ export class UserService {
 
     let url: string = URL + '/user/findOneBy';
 
-    for (let key in options) {
-      if (url.includes("?")) {
-        url += "&" + key + "=" + options[key];
-      } else {
-        url += "?" + key + "=" + options[key];
-      }
-    }
+    url = this.commonService.getUrl(url, options);
 
-    return this.http.get(url, { headers: headers }).toPromise().then(
-      result => { return this.extractData(result); }
-    ).catch(this.handleError);
+    return this.http.get(url, { headers: headers }).toPromise()
+      .then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
   }
 
   add(data: UserModel): Promise<any> {
@@ -63,9 +51,7 @@ export class UserService {
     let url: string = URL + '/user/add';
 
     return this.http.post(url, JSON.stringify(data), { headers: headers })
-      .toPromise().then(
-      result => { return this.extractData(result); }
-      ).catch(this.handleError);
+      .toPromise().then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
   }
 
   login(data: UserModel): Promise<any> {
@@ -75,9 +61,7 @@ export class UserService {
     let url: string = URL + '/user/login';
 
     return this.http.post(url, JSON.stringify(data), { headers: headers })
-      .toPromise().then(
-      result => { return this.extractData(result); }
-      ).catch(this.handleError);
+      .toPromise().then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
   }
 
   update(data: UserModel): Promise<any> {
@@ -90,9 +74,7 @@ export class UserService {
     let url: string = URL + '/user/update/' + data._id;
 
     return this.http.put(url, JSON.stringify(data), { headers: headers })
-      .toPromise().then(
-        result => { return this.extractData(result); }
-      ).catch(this.handleError);
+      .toPromise().then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
   }
 
   listItemsForSelect(): Promise<any> {
@@ -103,9 +85,8 @@ export class UserService {
 
     let url: string = URL + '/user/listForSelect';
 
-    return this.http.get(url, { headers: headers }).toPromise().then(
-      result => { return this.extractData(result); }
-    ).catch(this.handleError);
+    return this.http.get(url, { headers: headers }).toPromise()
+      .then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
   }
 
   numOfItem(options: Object): Promise<number> {
@@ -116,34 +97,10 @@ export class UserService {
 
     let url: string = URL + '/user/numOfUser';
 
-    for (let key in options) {
-      if (url.includes("?")) {
-        url += "&" + key + "=" + options[key];
-      } else {
-        url += "?" + key + "=" + options[key];
-      }
-    }
+    url = this.commonService.getUrl(url, options);
 
-    return this.http.get(url, { headers: headers }).toPromise().then(
-      result => { return this.extractData(result); }
-    ).catch(this.handleError);
-  }
-
-
-
-  private extractData(res: Response) {
-    if (res.status < 200 || res.status >= 300) {
-      throw new Error('Bad response status: ' + res.status);
-    }
-    let body = res.json();
-    if (body.statusCode && body.statusCode < 0) {
-      throw new Error(body.statusMessage);
-    }
-    return body || {};
-  }
-
-  private handleError(error: any): Promise<any> {
-    return Promise.reject(error.message || error);
+    return this.http.get(url, { headers: headers }).toPromise()
+      .then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
   }
 
 }
