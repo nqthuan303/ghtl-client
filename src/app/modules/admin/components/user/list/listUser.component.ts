@@ -19,6 +19,7 @@ export class ListUserComponent {
     @ViewChild('adminList') private adminList: any;
 
     districtList: any;
+    wardList: any;
     formSearch: FormGroup;
     componentInfo: Object;
     arrHeader: Array<any>;
@@ -37,6 +38,7 @@ export class ListUserComponent {
     };
 
     constructor(
+        @Inject(FormBuilder) formBuilder: FormBuilder,
         public service: UserService,
         private toastr: ToastsManager,
         vcr: ViewContainerRef,
@@ -45,6 +47,11 @@ export class ListUserComponent {
     ) {
         this.toastr.setRootViewContainerRef(vcr);
         
+        this.formSearch = formBuilder.group({
+            'keyword': [''],
+            'wardId': ['0'],
+            'districtId': ['0'],
+        });
         this.componentInfo = {
             'name': 'user',
             'label': 'Người dùng'
@@ -110,6 +117,13 @@ export class ListUserComponent {
         this.districtService.listItems('587124bcbe644a04d4b14e8b').then(function(result) {
             App.unblockUI();
             $this.districtList = result;
+        });
+    }
+
+    getWardList() {
+        this.wardService.listItems(this.listOptions.districtId).then(result => {
+            this.wardList = result;
+            this.listOptions.wardId = '0';
         });
     }
 
