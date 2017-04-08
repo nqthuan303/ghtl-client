@@ -7,7 +7,7 @@ var App = function() {
     
     return {
         init: function() {
-
+            
         },
         getGlobalImgPath: function() {
             return assetsPath + globalImgPath;

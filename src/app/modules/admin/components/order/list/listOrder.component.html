@@ -28,30 +28,28 @@
                                     <option value="0">Chọn trạng thái</option>
                                     <option *ngFor="let objOrderStatus of orderStatusList" [ngValue]="objOrderStatus._id">{{objOrderStatus.name}}</option>
                                 </select>
-                                <button type="submit" class="btn btn-default">Apply</button>
+                                <button type="submit" class="btn btn-primary">Apply</button>
                             </form>
                         </div>
                         <div class="col-sm-9 div-filter">
-                            <form [formGroup]="formSearch" role="form" (ngSubmit)="adminList.getData(true)" class="form-search form-inline">
-                                <input formControlName="keyword" [(ngModel)]="listOptions.keyword" type="text" class="form-control" aria-controls="dynamic-table">
-                                <select formControlName="clientId" [(ngModel)]="listOptions.clientId" class="form-control">
+                            <form [formGroup]="formSearch" role="form" class="form-search form-inline">
+                                <input (keyup.enter)="adminList.getData(true)" formControlName="keyword" placeholder="người nhận, địa chỉ" [(ngModel)]="listOptions.keyword" type="text" class="form-control" aria-controls="dynamic-table">
+                                <select (change)="adminList.getData(true)" formControlName="clientId" [(ngModel)]="listOptions.clientId" class="form-control">
                                     <option value="0">Shop</option>
                                     <option *ngFor="let objClient of clientList" [ngValue]="objClient.value">{{objClient.label}}</option>
                                 </select>
-                                <select formControlName="orderStatusId" [(ngModel)]="listOptions.orderStatusId" class="form-control">
+                                <select (change)="adminList.getData(true)" formControlName="orderStatusId" [(ngModel)]="listOptions.orderStatusId" class="form-control">
                                     <option value="0">Status</option>
                                     <option *ngFor="let objOrderStatus of orderStatusList" [ngValue]="objOrderStatus._id">{{objOrderStatus.name}}</option>
                                 </select>
-                                <select formControlName="districtId" (change)="getWardList()" [(ngModel)]="listOptions.districtId" class="form-control">
+                                <select formControlName="districtId" (change)="adminList.getData(true); getWardList();" [(ngModel)]="listOptions.districtId" class="form-control">
                                     <option value="0">Quận</option>
                                     <option *ngFor="let objDistrict of districtList" [ngValue]="objDistrict.value">{{objDistrict.label}}</option>
                                 </select>
-                                <select formControlName="wardId" [(ngModel)]="listOptions.wardId" class="form-control">
+                                <select *ngIf="wardList && wardList.length > 0" (change)="adminList.getData(true)" formControlName="wardId" [(ngModel)]="listOptions.wardId" class="form-control">
                                     <option value="0">Phường</option>
                                     <option *ngFor="let objWard of wardList" [ngValue]="objWard.value">{{objWard.label}}</option>
-                                </select> 
-                                <button type="submit" class="btn btn-default">Search</button>
-                                <button (click)="clearSearchForm(); adminList.getData(true)" type="button" class="btn btn-danger">Clear</button>
+                                </select>
                             </form>
                         </div>
                     </div>
@@ -70,4 +68,31 @@
             </div>
         </section>
     </div>
+
+    <div class="modal fade" bsModal #confirmModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Are you sure?</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="confirmModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ confirmTitle }}
+                </div>
+                <div class="modal-footer">
+                    <button (click)="confirmModal.hide()" class="btn btn-danger" type="button">
+                        <i class="fa fa-times"></i>
+                        Cancel
+                    </button>
+                    <button (click)="confirm()" class="btn btn-success" type="button">
+                        <i class="fa fa-check"></i>
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

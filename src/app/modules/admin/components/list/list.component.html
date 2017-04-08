@@ -1,4 +1,4 @@
-<table class="display table table-bordered table-striped">
+<table class="display table table-bordered table-striped table-hover">
     <thead>
         <tr>
             <th>
@@ -42,10 +42,10 @@
     <div class="col-sm-4 div-bottom-left">
         <div id="dynamic-table_length" class="dataTables_length">
             <label>
-                    <select (change)="changeRecoresPerPage($event)" name="recordsPerPage" id="recordsPerPage" class="form-control" size="1">
-                        <option *ngFor="let records of recordsPerPageList" value="{{records}}">{{records}}</option>
-                    </select> records ({{ numOfItem }} entries)
-                </label>
+                <select *ngIf="numOfItem > options.recordsPerPage" (change)="changeRecoresPerPage($event)" name="recordsPerPage" id="recordsPerPage" class="form-control" size="1">
+                    <option *ngFor="let records of recordsPerPageList" value="{{records}}">{{records}}</option>
+                </select> records ({{ numOfItem }} entries)
+            </label>
         </div>
     </div>
     <div class="col-sm-8 div-bottom-right pull-right">

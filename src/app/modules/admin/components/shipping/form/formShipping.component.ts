@@ -107,15 +107,7 @@ export class FormShippingComponent {
         });
 
     }
-    clearSearchForm() {
-        this.formSearch.reset({
-            'keyword': [''],
-            'clientId': ['0'],
-            'orderStatusId': ['0'],
-            'wardId': ['0'],
-            'districtId': ['0'],
-        });
-    }
+
     ngOnInit() {
         let $this = this;
     }

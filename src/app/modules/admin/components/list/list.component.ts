@@ -51,6 +51,7 @@ export class ListComponent implements OnInit {
             $this.router.navigate([editLink]);
         });
     }
+    
 
     sort(sortField: string, allowSort: boolean) {
         if (!allowSort) { return; }
@@ -86,10 +87,8 @@ export class ListComponent implements OnInit {
         if (getNumOfItem === true) {
             App.blockUI();
             this.service.numOfItem(this.options).then(result => {
-                this.numOfItem = 0;
-                if(result.length > 0) {
-                    this.numOfItem = result;
-                }
+                this.numOfItem = result;
+                
                 this.lastPage = this.getLastPage();
                 App.unblockUI();
             });

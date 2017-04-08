@@ -1,5 +1,6 @@
-import { Component, Inject, OnInit, AfterViewInit, ViewContainerRef } from '@angular/core';
+import { Component, Inject, OnInit, AfterViewInit, ViewContainerRef, ViewChild  } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { OrderService } from '../../../../../shared/services/order.service';
 import { ClientService } from '../../../../../shared/services/client.service';
@@ -24,6 +25,9 @@ declare var App: any;
     providers: [OrderLogService]
 })
 export class ListOrderComponent implements OnInit {
+    @ViewChild('confirmModal') private confirmModal: ModalDirective;
+    @ViewChild('adminList') private adminList: any;
+    
     objData: OrderModel = new OrderModel();
 
     componentInfo: Object;
@@ -38,7 +42,12 @@ export class ListOrderComponent implements OnInit {
     statusChange: string;
     checkedList: any = {};
     recordsPerPageList: Array<number> = [10, 25, 50];
-    
+
+    selectedItemId: string;
+    selectedStatusId: string;
+    confirmTitle: string;
+    confirmAction: string;
+
     listOptions: any = {
         "recordsPerPage": this.recordsPerPageList[0],
         "page": 1,
@@ -98,8 +107,7 @@ export class ListOrderComponent implements OnInit {
             {
                 'type': 'html',
                 'elms': [
-                    { 'elmType': 'slb-orderstatus', 'elmData': this.orderStatusList },
-                    { 'elmType': 'btn-change-orderstatus' }
+                    { 'elmType': 'slb-orderstatus', 'elmData': this.orderStatusList }
                 ]
 
             },
@@ -122,38 +130,65 @@ export class ListOrderComponent implements OnInit {
             { 'label': 'Thao tác', 'name': 'orderstatus_id' }
         ];
     }
+
+    updateOrderStatus() {
+        let dataUpdate = {
+            '_id': this.selectedItemId,
+            'orderstatus_id': this.selectedStatusId
+        };
+
+        this.service.updateStatus(dataUpdate).then((result) => {
+            this.confirmModal.hide();
+            if (result.statusCode == 0) {
+                this.toastr.success('Trạng thái của đơn hàng được cập nhật thành công!', result.message);
+            } else {
+                this.toastr.error('Đã xảy ra lỗi trong quá trình cập nhật!', result.message);
+            }
+        });
+    }
+    deleteOrder() {
+        this.service.delete(this.selectedItemId).then((result) => {
+            let data = result.data;
+            if (data.statusCode == 0) {
+                this.adminList.getData(true);
+                this.toastr.success('Xóa đơn hàng thành công!', data.message);
+            } else {
+                this.toastr.error('Đã xảy ra lỗi trong quá trình xóa đơn hàng!', data.message);
+            }
+            this.confirmModal.hide();
+        });
+    }
+    confirm() {
+        switch(this.confirmAction){
+            case 'updateOrderStatus':
+                this.updateOrderStatus();
+                break;
+            case 'deleteOrder':
+                this.deleteOrder();
+                break;
+        }
+    }
     ngAfterViewInit() {
         let $this = this;
 
-        $('#main-content').on('click', '.btn-changeStatus', function (e) {
-            let itemId = this.parentNode.parentNode.children[0].value;
-            let selectedStatus = this.parentNode.children[0].value
+        $('body').on('change', '.slb-orderstatus', function (e) {
+            $this.confirmTitle = 'Xác nhận cập nhật trạng thái đơn hàng?';
+            $this.confirmAction = 'updateOrderStatus';
 
-            let dataUpdate = {
-                '_id': itemId,
-                'orderstatus_id': selectedStatus
-            };
+            $this.selectedItemId = this.parentNode.parentNode.children[0].value;
+            $this.selectedStatusId = this.parentNode.children[0].value;
+            $this.confirmModal.show();
+        });
 
-            $this.service.updateStatus(dataUpdate).then((result) => {
-                if (result.statusCode == 0) {
-                    $this.toastr.success('Trạng thái của đơn hàng được cập nhật thành công!', result.message);
-                } else {
-                    $this.toastr.error('Đã xảy ra lỗi trong quá trình cập nhật!', result.message);
-                }
-            });
-
+        $('body').on('click', '.btn-delete', function (e) {
+            $this.confirmTitle = 'Xác nhận xóa đơn hàng?';
+            $this.confirmAction = 'deleteOrder';
+            $this.selectedItemId = this.parentNode.parentNode.children[0].value;
+            $this.confirmModal.show();
         });
 
     }
-    clearSearchForm() {
-        this.formSearch.reset({
-            'keyword': [''],
-            'clientId': ['0'],
-            'orderStatusId': ['0'],
-            'wardId': ['0'],
-            'districtId': ['0'],
-        });
-    }
+
     ngOnInit() {
         let $this = this;
         App.blockUI();
