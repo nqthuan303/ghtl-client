@@ -89,8 +89,7 @@ export class ListClientComponent implements OnInit, AfterViewInit {
         $('admin-list-client').on('click', '.btn-delete', function (e) {
             $this.selectedItemId = this.parentNode.parentNode.children[0].value;
             $this.confirmAction = 'deleteItem';
-
-            $this.confirmModal.showModal({ confirmTitle: 'Xác nhận xóa đơn hàng?' });
+            $this.confirmModal.showModal({ confirmTitle: 'Xác nhận xóa khách hàng?' });
         });
     }
 
@@ -108,9 +107,9 @@ export class ListClientComponent implements OnInit, AfterViewInit {
             let data = result.data;
             if (data.statusCode == 0) {
                 this.adminList.getData(true);
-                this.toastr.success('Xóa đơn hàng thành công!', data.message);
+                this.toastr.success('Xóa khách hàng thành công!', data.message);
             } else {
-                this.toastr.error('Đã xảy ra lỗi trong quá trình xóa đơn hàng!', data.message);
+                this.toastr.error('Đã xảy ra lỗi!', data.message);
             }
             this.confirmModal.hideModal();
         });

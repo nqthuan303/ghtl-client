@@ -22,6 +22,7 @@
                         </div>
                     </div>
                     <admin-list 
+                        #adminList
                         (onChecked)="onChecked($event)" 
                         [componentInfo]="componentInfo" 
                         [arrColumns]="arrColumns" 
@@ -35,4 +36,5 @@
             </div>
         </section>
     </div>
+    <confirm-modal (onConfirm)="onConfirmModal()" #confirmModal></confirm-modal>
 </div>

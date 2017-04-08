@@ -54,6 +54,20 @@ export class UserService {
       .toPromise().then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
   }
 
+  delete(itemId: string): Promise<any> {
+    const auth = JSON.parse(localStorage.getItem('auth'));
+    const token = auth.token;
+    const headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', token);
+    const url: string = URL + '/user/delete/' + itemId;
+
+    return this.http.delete(url, { headers: headers })
+      .toPromise().then(result => { return this.commonService.extractData(result)}).catch(this.commonService.handleError);
+
+  }
+
   login(data: UserModel): Promise<any> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');

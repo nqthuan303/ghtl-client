@@ -1,11 +1,11 @@
-import { Injectable }       from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   CanActivate, Router,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   CanActivateChild,
   CanLoad, Route
-}                           from '@angular/router';
+} from '@angular/router';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
@@ -28,11 +28,11 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   }
 
   checkLogin(url: string): boolean {
-    let auth =JSON.parse(localStorage.getItem('auth'));
-    if(auth && auth.token) {
-      return true; 
+    let auth = JSON.parse(localStorage.getItem('auth'));
+    if (auth && auth.token) {
+      return true;
     }
-    
+
     this.router.navigateByUrl('/user/login');
     return false;
   }
