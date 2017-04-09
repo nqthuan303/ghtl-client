@@ -16,7 +16,8 @@ export class WardService {
     let url: string = URL + '/ward/listForSelect?districtId=' + districtId;
 
     return this.http.get(url, { headers: null }).toPromise()
-      .then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
+      .then(result => { return this.commonService.extractData(result) })
+      .catch( error => { return this.commonService.handleError(error) });
   }
 
 }

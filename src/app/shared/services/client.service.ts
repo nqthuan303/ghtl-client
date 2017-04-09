@@ -24,7 +24,8 @@ export class ClientService {
     url = this.commonService.getUrl(url, options);
 
     return this.http.get(url, { headers: headers }).toPromise()
-      .then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
+      .then(result => { return this.commonService.extractData(result) })
+      .catch( error => { return this.commonService.handleError(error) });
   }
 
   findOneBy(options: Object): Promise<any> {
@@ -39,7 +40,8 @@ export class ClientService {
     url = this.commonService.getUrl(url, options);
 
     return this.http.get(url, { headers: headers }).toPromise()
-      .then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
+      .then(result => { return this.commonService.extractData(result) })
+      .catch( error => { return this.commonService.handleError(error) });
   }
 
   add(data: ClientModel): Promise<any> {
@@ -51,8 +53,9 @@ export class ClientService {
 
     let url: string = URL + '/client/add';
 
-    return this.http.post(url, JSON.stringify(data), { headers: headers })
-      .toPromise().then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
+    return this.http.post(url, JSON.stringify(data), { headers: headers }).toPromise()
+      .then(result => { return this.commonService.extractData(result) })
+      .catch( error => { return this.commonService.handleError(error) });
   }
 
   delete(itemId: string): Promise<any> {
@@ -64,8 +67,9 @@ export class ClientService {
     headers.append('Authorization', token);
     const url: string = URL + '/client/delete/' + itemId;
 
-    return this.http.delete(url, { headers: headers })
-      .toPromise().then(result => { return this.commonService.extractData(result)}).catch(this.commonService.handleError);
+    return this.http.delete(url, { headers: headers }).toPromise()
+      .then(result => { return this.commonService.extractData(result)})
+      .catch( error => { return this.commonService.handleError(error) });
 
   }
 
@@ -79,8 +83,9 @@ export class ClientService {
 
     let url: string = URL + '/client/update/' + data._id;
 
-    return this.http.put(url, JSON.stringify(data), { headers: headers })
-      .toPromise().then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
+    return this.http.put(url, JSON.stringify(data), { headers: headers }).toPromise()
+      .then(result => { return this.commonService.extractData(result) })
+      .catch( error => { return this.commonService.handleError(error) });
   }
 
   listItemsForSelect(): Promise<any> {
@@ -93,7 +98,8 @@ export class ClientService {
     let url: string = URL + '/client/listForSelect';
 
     return this.http.get(url, { headers: headers }).toPromise()
-      .then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
+      .then(result => { return this.commonService.extractData(result) })
+      .catch( error => { return this.commonService.handleError(error) });
   }
 
   numOfItem(options: Object): Promise<number> {
@@ -108,7 +114,8 @@ export class ClientService {
     url = this.commonService.getUrl(url, options);
 
     return this.http.get(url, { headers: headers }).toPromise()
-      .then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
+      .then(result => { return this.commonService.extractData(result) })
+      .catch( error => { return this.commonService.handleError(error) });
   }
 
 }

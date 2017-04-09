@@ -17,7 +17,8 @@ export class ProvinceService {
     let url: string = URL + '/province/listForSelect';
 
     return this.http.get(url, { headers: null }).toPromise()
-      .then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
+      .then(result => { return this.commonService.extractData(result) })
+      .catch( error => { return this.commonService.handleError(error) });
   }
 
 }

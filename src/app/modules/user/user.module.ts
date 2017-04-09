@@ -8,7 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 
 import { SharedModule } from '../shared/shared.module';
 import { UserRoutingModule } from './user-routing.module';
-// import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 @NgModule({
     declarations: [
@@ -20,7 +20,7 @@ import { UserRoutingModule } from './user-routing.module';
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        // ToastModule.forRoot(),
+        ToastModule.forRoot(),
         UserRoutingModule,
         SharedModule
     ]

@@ -9,12 +9,12 @@
         <!--  notification start -->
         <ul class="nav top-menu">
             <!-- settings start -->
-            <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <li dropdown class="dropdown">
+                <a href='javascript:;' dropdownToggle class="dropdown-toggle">
                     <i class="fa fa-tasks"></i>
                     <span class="badge bg-success">6</span>
                 </a>
-                <ul class="dropdown-menu extended tasks-bar">
+                <ul *dropdownMenu role="menu" class="dropdown-menu extended tasks-bar">
                     <div class="notify-arrow notify-arrow-green"></div>
                     <li>
                         <p class="green">You have 6 pending tasks</p>
@@ -94,12 +94,13 @@
             </li>
             <!-- settings end -->
             <!-- inbox dropdown start-->
-            <li id="header_inbox_bar" class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+            <li dropdown id="header_inbox_bar" class="dropdown">
+                <a href='javascript:;' dropdownToggle class="dropdown-toggle">
                     <i class="fa fa-envelope-o"></i>
                     <span class="badge bg-important">5</span>
                 </a>
-                <ul class="dropdown-menu extended inbox">
+                <ul *dropdownMenu role="menu" class="dropdown-menu extended inbox">
                     <div class="notify-arrow notify-arrow-red"></div>
                     <li>
                         <p class="red">You have 5 new messages</p>
@@ -159,12 +160,13 @@
             </li>
             <!-- inbox dropdown end -->
             <!-- notification dropdown start-->
-            <li id="header_notification_bar" class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+            <li dropdown id="header_notification_bar" class="dropdown">
+                <a href='javascript:;' dropdownToggle class="dropdown-toggle">
                     <i class="fa fa-bell-o"></i>
                     <span class="badge bg-warning">7</span>
                 </a>
-                <ul class="dropdown-menu extended notification">
+                <ul *dropdownMenu role="menu" class="dropdown-menu extended notification">
                     <div class="notify-arrow notify-arrow-yellow"></div>
                     <li>
                         <p class="yellow">You have 7 new notifications</p>
@@ -211,28 +213,21 @@
     <div class="top-nav ">
         <!--search & user info start-->
         <ul class="nav pull-right top-menu">
-            <li>
-                <input type="text" class="form-control search" placeholder="Search">
-            </li>
             <!-- user login dropdown start-->
-            <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <li [ngClass]="{open: showUserProfileDropdown === true}" class="dropdown">
+                <a (click)="showUserProfileDropdown = !showUserProfileDropdown" aria-expanded="true" href='javascript:;' type="button" class="dropdown-toggle">
                     <img alt="" src="assets/templates/admin/img/avatar1_small.jpg">
-                    <span class="username">Jhon Doue</span>
+                    <span class="username">{{nameOfUser}}</span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">
                     <div class="log-arrow-up"></div>
-                    <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                    <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                    <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
-                    <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                    <li><a href='javascript:;'><i class=" fa fa-suitcase"></i>Profile</a></li>
+                    <li><a href='javascript:;'><i class="fa fa-cog"></i> Settings</a></li>
+                    <li><a href='javascript:;'><i class="fa fa-bell-o"></i> Notification</a></li>
+                    <li><a href='javascript:;' (click)="logout()" ><i class="fa fa-key"></i> Log Out</a></li>
                 </ul>
             </li>
-            <li class="sb-toggle-right">
-                <i class="fa  fa-align-right"></i>
-            </li>
-            <!-- user login dropdown end -->
         </ul>
         <!--search & user info end-->
     </div>

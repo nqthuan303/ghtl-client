@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
+import { Router } from '@angular/router';
+
+declare var App: any;
 
 @Injectable()
 export class CommonService {
+
+  constructor(private router: Router) {}
 
   public extractData(res: Response) {
     if (res.status < 200 || res.status >= 300) {
@@ -16,6 +21,12 @@ export class CommonService {
   }
 
   public handleError(error: any): Promise<any> {
+    if(error.status == 401) {
+      localStorage.removeItem('auth');
+      App.unblockUI();
+      this.router.navigate(['user/login']);
+
+    }
     return Promise.reject(error.message || error);
   }
 

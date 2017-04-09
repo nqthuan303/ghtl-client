@@ -8,7 +8,6 @@ import { SharedModule } from '../shared/shared.module';
 import { SelectModule } from 'angular2-select';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
-
 /*========== import services ===========*/
 import { OrderService } from '../../shared/services/order.service';
 import { ClientService } from '../../shared/services/client.service';

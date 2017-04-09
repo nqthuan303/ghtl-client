@@ -24,7 +24,8 @@ export class OrderLogService {
     url = this.commonService.getUrl(url, options);
 
     return this.http.get(url, { headers: headers }).toPromise()
-      .then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
+      .then(result => { return this.commonService.extractData(result) })
+      .catch( error => { return this.commonService.handleError(error) });
   }
 
   add(data: OrderLogModel): Promise<any> {
@@ -37,7 +38,8 @@ export class OrderLogService {
     let url: string = URL + '/orderlog/add';
 
     return this.http.post(url, JSON.stringify(data), { headers: headers })
-      .toPromise().then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
+      .toPromise().then(result => { return this.commonService.extractData(result) })
+      .catch( error => { return this.commonService.handleError(error) });
   }
 
   numOfItem(options: Object): Promise<number> {
@@ -51,7 +53,8 @@ export class OrderLogService {
     url = this.commonService.getUrl(url, options);
 
     return this.http.get(url, { headers: headers }).toPromise()
-      .then(result => { return this.commonService.extractData(result) }).catch(this.commonService.handleError);
+      .then(result => { return this.commonService.extractData(result) })
+      .catch( error => { return this.commonService.handleError(error) });
   }
 
 
