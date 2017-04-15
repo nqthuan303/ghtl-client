@@ -30,13 +30,13 @@ export class OrderService {
       .catch( error => { return this.commonService.handleError(error) });
   }
 
-  findOneBy(options: Object): Promise<any> {
+  findOne(options: Object): Promise<any> {
     const auth = JSON.parse(localStorage.getItem('auth'));
     const token = auth.token;
     const headers = new Headers();
     headers.append('Authorization', token);
 
-    let url: string = URL + '/order/findOneBy';
+    let url: string = URL + '/order/findOne';
 
     url = this.commonService.getUrl(url, options);
 
@@ -52,7 +52,7 @@ export class OrderService {
     const headers = new Headers();
     headers.append('Authorization', token);
 
-    let url: string = URL + '/order/numOfOrder';
+    let url: string = URL + '/order/getCount';
 
     url = this.commonService.getUrl(url, options);
 

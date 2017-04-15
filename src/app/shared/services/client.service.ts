@@ -28,14 +28,14 @@ export class ClientService {
       .catch( error => { return this.commonService.handleError(error) });
   }
 
-  findOneBy(options: Object): Promise<any> {
+  findOne(options: Object): Promise<any> {
 
     let auth =JSON.parse(localStorage.getItem('auth'));
     let token = auth.token;
     let headers = new Headers();
     headers.append('Authorization', token);
 
-    let url: string = URL + '/client/findOneBy';
+    let url: string = URL + '/client/findOne';
 
     url = this.commonService.getUrl(url, options);
 
@@ -109,7 +109,7 @@ export class ClientService {
     let headers = new Headers();
     headers.append('Authorization', token);
 
-    let url: string = URL + '/client/numOfClient';
+    let url: string = URL + '/client/getCount';
 
     url = this.commonService.getUrl(url, options);
 

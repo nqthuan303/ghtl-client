@@ -28,13 +28,13 @@ export class UserService {
       .catch( error => { return this.commonService.handleError(error) });
   }
 
-  findOneBy(options: Object): Promise<any> {
+  findOne(options: Object): Promise<any> {
     let auth =JSON.parse(localStorage.getItem('auth'));
     let token = auth.token;
     let headers = new Headers();
     headers.append('Authorization', token);
 
-    let url: string = URL + '/user/findOneBy';
+    let url: string = URL + '/user/findOne';
 
     url = this.commonService.getUrl(url, options);
 
@@ -116,7 +116,7 @@ export class UserService {
     let headers = new Headers();
     headers.append('Authorization', token);
 
-    let url: string = URL + '/user/numOfUser';
+    let url: string = URL + '/user/getCount';
 
     url = this.commonService.getUrl(url, options);
 

@@ -61,6 +61,8 @@ export class ListUserComponent {
             { 'type': 'text', 'name': 'name' },
             { 'type': 'text', 'name': 'fullAddress' },
             { 'type': 'text', 'name': 'phone_number' },
+            { 'type': 'text', 'name': 'nameOfCreater' },
+            { 'type': 'text', 'name': 'createdAt' },
             { 'type': 'text', 'name': 'status' },
             {
                 'type': 'html',
@@ -74,6 +76,8 @@ export class ListUserComponent {
             { 'label': 'Họ Và Tên', 'name': 'name', 'sort': true },
             { 'label': 'Địa chỉ', 'name': 'fullAddress' },
             { 'label': 'Số điện thoại', 'name': 'phone_number', 'sort': true },
+            { 'label': 'Người tạo', 'name': 'createdBy', 'sort': true },
+            { 'label': 'Ngày tạo', 'name': 'createdAt', 'sort': true },
             { 'label': 'Status', 'name': 'status', 'sort': true },
             { 'label': 'Thao tác' }
         ];

@@ -63,6 +63,8 @@ export class ListClientComponent implements OnInit, AfterViewInit {
             { 'type': 'text', 'name': 'fullAddress' },
             { 'type': 'text', 'name': 'phone_number' },
             { 'type': 'text', 'name': 'link' },
+            { 'type': 'text', 'name': 'nameOfCreater' },
+            { 'type': 'text', 'name': 'createdAt' },
             { 'type': 'text', 'name': 'status' },
             {
                 'type': 'html',
@@ -78,6 +80,8 @@ export class ListClientComponent implements OnInit, AfterViewInit {
             { 'label': 'Địa chỉ', 'name': 'fullAddress' },
             { 'label': 'Số điện thoại', 'name': 'phone_number', 'sort': true },
             { 'label': 'Link', 'name': 'link' },
+            { 'label': 'Người tạo', 'name': 'createdBy', 'sort': true },
+            { 'label': 'Ngày tạo', 'name': 'createdAt', 'sort': true },
             { 'label': 'Status', 'name': 'status', 'sort': true },
             { 'label': 'Thao tác' }
         ];

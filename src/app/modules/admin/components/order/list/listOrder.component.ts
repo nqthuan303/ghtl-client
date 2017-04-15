@@ -103,7 +103,8 @@ export class ListOrderComponent implements OnInit {
             { 'type': 'text', 'name': 'fullAddress' },
             { 'type': 'text', 'name': 'bonus_fee' },
             { 'type': 'text', 'name': 'ship_fee' },
-            { 'type': 'text', 'name': 'datetime_added' },
+            { 'type': 'text', 'name': 'nameOfCreater' },
+            { 'type': 'text', 'name': 'createdAt' },
             {
                 'type': 'html',
                 'elms': [
@@ -125,7 +126,8 @@ export class ListOrderComponent implements OnInit {
             { 'label': 'Địa chỉ giao hàng', 'name': 'fullAddress' },
             { 'label': 'Tiền thu hộ', 'name': 'bonus_fee', 'sort': true },
             { 'label': 'Cước vận chuyển', 'name': 'ship_fee', 'sort': true },
-            { 'label': 'Ngày tạo', 'name': 'datetime_added', 'sort': true },
+            { 'label': 'Người tạo', 'name': 'createdBy', 'sort': true },
+            { 'label': 'Ngày tạo', 'name': 'createdAt', 'sort': true },
             { 'label': 'Status', 'name': 'orderstatus_id', 'sort': true },
             { 'label': 'Thao tác', 'name': 'orderstatus_id' }
         ];

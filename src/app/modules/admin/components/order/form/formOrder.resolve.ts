@@ -7,7 +7,7 @@ export class FormOrderResolve implements Resolve<any> {
 
     constructor(private service: OrderService) { }
     resolve(route: ActivatedRouteSnapshot) {
-        let result = this.service.findOneBy({'id': route.params['id']});
+        let result = this.service.findOne({'id': route.params['id']});
         return result;
     }
 }

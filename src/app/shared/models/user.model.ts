@@ -8,7 +8,7 @@ export class UserModel {
     ward_id: string;
     address: string;
     phone_number: string;
-    datetime_added: string;
+    createdAt: string;
     datetime_modified: string;
     status: number = 1;
 }

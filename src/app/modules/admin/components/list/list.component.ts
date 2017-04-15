@@ -150,6 +150,11 @@ export class ListComponent implements OnInit {
             obj.client_name = clientName;
         }
 
+        if (obj.createdBy) {
+            const nameOfCreater = obj.createdBy.name;
+            obj.nameOfCreater = nameOfCreater;
+        }
+
         return obj;
     }
 

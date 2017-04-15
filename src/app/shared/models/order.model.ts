@@ -12,7 +12,7 @@ export class OrderModel {
     ship_fee: number;
     note: string;
     orderstatus_id: string = '5884a56f7b66847851a426e6';
-    datetime_added: string;
+    createdAt: string;
     datetime_done: string;
     datetime_modified: string;
 }

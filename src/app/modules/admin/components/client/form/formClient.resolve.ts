@@ -7,6 +7,6 @@ export class FormClientResolve implements Resolve<any> {
 
     constructor(private service: ClientService) { }
     resolve(route: ActivatedRouteSnapshot) {
-        return this.service.findOneBy({ 'id': route.params['id'] });
+        return this.service.findOne({ 'id': route.params['id'] });
     }
 }

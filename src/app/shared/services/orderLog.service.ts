@@ -48,7 +48,7 @@ export class OrderLogService {
     let headers = new Headers();
     headers.append('Authorization', token);
 
-    let url: string = URL + '/client/numOfClient';
+    let url: string = URL + '/client/getCount';
 
     url = this.commonService.getUrl(url, options);
 

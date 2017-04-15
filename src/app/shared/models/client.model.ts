@@ -9,7 +9,7 @@ export class ClientModel {
     phone_number: string;
     phone_number_2: string;
     link: string;
-    datetime_added: string;
+    createdAt: string;
     datetime_modified: string;
     status: number = 1;
     bankNumber: string; // số tài khoản ngân hàng
