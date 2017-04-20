@@ -129,8 +129,8 @@ export class ListComponent implements OnInit {
     }
     trackByIndex(index: number, obj: any): any {
 
-        if (obj.province_id && obj.district_id && obj.ward_id) {
-            let fullAddress: string = '';
+        if (obj.province_id && obj.district_id) {
+            let fullAddress = '';
 
             if (obj.ward_id) {
                 fullAddress = obj.address + ', ' +
@@ -200,7 +200,7 @@ export class ListComponent implements OnInit {
     setPageList(): void {
         this.pageList = [];
 
-        let currentPage = this.options.page;
+        const currentPage = this.options.page;
         let pageFrom = currentPage - 1;
         let pageTo = currentPage + 1;
 

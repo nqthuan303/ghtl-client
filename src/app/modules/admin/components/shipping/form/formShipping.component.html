@@ -11,27 +11,142 @@
                 <div class="panel-body">
                     <div class="adv-table">
                         <div class="row div-table-header">
-                            <div class="col-sm-9 div-filter">
+                            <div class="col-sm-9 div-filter pull-right">
                                 <div class="search-order-recieve">
-                                    <input type="text" class="form-control" placeholder="Địa chỉ, người liên hệ, ..." />
+                                    <form [formGroup]="formSearch" role="form" class="form-search form-inline">
+                                        <input 
+                                            (keyup.enter)="getData(true)" 
+                                            [(ngModel)]="listOptions.keyword" 
+                                            formControlName="keyword"
+                                            type="text" class="form-control" 
+                                            placeholder="Địa chỉ, người liên hệ, ..." />
+                                        <select (change)="getData(true)" formControlName="clientId" [(ngModel)]="listOptions.clientId" class="form-control">
+                                            <option value="0">Shop</option>
+                                            <option *ngFor="let objClient of clientList" [ngValue]="objClient.value">{{objClient.label}}</option>
+                                        </select>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <admin-list 
-                            #adminList (onChecked)="onChecked($event)" 
-                            [componentInfo]="componentInfo" 
-                            [arrColumns]="arrColumns" 
-                            [arrHeader]="arrHeader"
-                            [options]="listOptions"
-                            [recordsPerPageList]="recordsPerPageList" 
-                            [service]="service">
-                        </admin-list>
+                        
+                        <div class="table-responsive">
+                            <table class="display table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div (click)="checkAll()" [ngClass]="{checked: checkedAll === true}" class="icheckbox_minimal-blue" style="position: relative;">
+                                                <ins class="iCheck-helper"></ins>
+                                            </div>
+                                        </th>
+                                        <th>STT</th>
+                                        <th (click)="sort('client_name', true)" 
+                                            [ngClass]="{sorting: true, 
+                                                        sorting_asc: (listOptions.sortValue === 1 && listOptions.sortField === 'client_name'), 
+                                                        sorting_desc: (listOptions.sortValue === -1 &&  listOptions.sortField === 'client_name')}">Shop</th>
+                                        <th>Địa chỉ</th>
+                                        <th (click)="sort('bonus_fee', true)"
+                                            [ngClass]="{sorting: true, 
+                                                            sorting_asc: (listOptions.sortValue === 1 && listOptions.sortField === 'bonus_fee'), 
+                                                            sorting_desc: (listOptions.sortValue === -1 &&  listOptions.sortField === 'bonus_fee')}" >Tiền thu hộ</th>
+                                        <th>Thao tác</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of items; let i = index; trackBy:trackByIndex;">
+                                        <input type="hidden" class="item-id" [attr.value]="item._id" />
+                                        <td>
+                                            <div 
+                                                (click)="checkEl(item._id)" 
+                                                [ngClass]="{checked: checkedList[item._id]}" 
+                                                class="icheckbox_minimal-blue" style="position: relative;">
+                                                <ins class="iCheck-helper"></ins>
+                                            </div>
+                                        </td>
+                                        <td>{{rowNumberList[i]}}</td>
+                                        <td>{{item.client_name}}</td>
+                                        <td>{{item.fullAddress}}</td>
+                                        <td>{{item.bonus_fee}}</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr *ngIf="items.length == 0">
+                                        <td colspan="6"><i>Không có dữ liệu</i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-sm-4 div-bottom-left">
+                                    <div id="dynamic-table_length" class="dataTables_length">
+                                        <label>
+                                            <select *ngIf="numOfItem > listOptions.recordsPerPage" (change)="changeRecoresPerPage($event)" name="recordsPerPage" id="recordsPerPage" class="form-control" size="1">
+                                                <option *ngFor="let records of recordsPerPageList" value="{{records}}">{{records}}</option>
+                                            </select> records ({{ numOfItem }} entries)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 div-bottom-right pull-right">
+                                    <div class="wrap-pagination" *ngIf="numOfItem > listOptions.recordsPerPage">
+                                        <div class="dataTables_paginate paging_bootstrap pagination">
+                                            <ul>
+                                                <li [ngClass]="{disabled: listOptions.page == 1}" class="disabled" (click)="goFirstPage()"><a>«</a></li>
+                                                <li [ngClass]="{disabled: listOptions.page == 1}" (click)="goPrevPage()" class="prev"><a>Prev</a></li>
+                                                <li [ngClass]="{active: listOptions.page==page}" (click)="goPage(page)" *ngFor="let page of pageList"><a>{{page}}</a></li>
+                                                <li [ngClass]="{disabled: listOptions.page == lastPage}" (click)="goNextPage()" class="next"><a>Next</a></li>
+                                                <li [ngClass]="{disabled: listOptions.page == lastPage}" (click)="goLastPage()"><a>»</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
             </section>
         </div>
-        <div class="col-sm-6">Phải</div>
+        <div class="col-sm-6">
+            <section class="panel">
+                <header class="panel-heading">
+                    Danh sách đơn hàng đã chọn
+                    <span class="tools pull-right">
+                        <a class="fa fa-chevron-down"></a>
+                    </span>
+                </header>
+                <div class="panel-body">
+                    <div class="adv-table">
+                        <div class="table-responsive">
+                            <table class="display table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Shop</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Tiền thu hộ</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let selectedOrderStorageItem of selectedOrderStorageList">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr *ngIf="selectedOrderStorageList.length == 0">
+                                        <td colspan="5"><i>Không có dữ liệu</i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-6">

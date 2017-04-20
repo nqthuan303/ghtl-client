@@ -15,6 +15,7 @@ import { UserService } from '../../shared/services/user.service';
 import { OrderStatusService } from '../../shared/services/orderstatus.service';
 import { DistrictService } from '../../shared/services/district.service';
 import { WardService } from '../../shared/services/ward.service';
+import { ShippingService } from '../../shared/services/shipping.service';
 
 /*========== import resolves ===========*/
 import { ClientResolve } from '../../shared/resolves/client.resolve';
@@ -76,6 +77,7 @@ import { FormShippingComponent } from './components/shipping/form/formShipping.c
     AdminRoutingModule
   ],
   providers: [
+    ShippingService,
     ClientService,
     OrderService,
     OrderStatusService,
