@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 /*========== import modules ===========*/
+import {MdButtonModule, MdCheckboxModule} from '@angular/material';
 import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { SelectModule } from 'angular2-select';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { AgmCoreModule } from '@agm/core';
 
 /*========== import services ===========*/
 import { OrderService } from '../../shared/services/order.service';
@@ -46,6 +48,7 @@ import { FormUserComponent } from './components/user/form/formUser.component';
 import { OrderLogComponent } from './components/orderLog/orderLog.component';
 import { ListShippingComponent } from './components/shipping/list/listShipping.component';
 import { FormShippingComponent } from './components/shipping/form/formShipping.component';
+import { AddressComponent } from './components/address/address.component';
 
 @NgModule({
   declarations: [
@@ -63,13 +66,19 @@ import { FormShippingComponent } from './components/shipping/form/formShipping.c
     ListUserComponent,
     ListShippingComponent,
     FormShippingComponent,
-    OrderLogComponent, 
+    OrderLogComponent,
+    AddressComponent,
     SafeHtmlPipe,
     ProcessHtmlColumnPipe
   ],
   imports: [
+    MdButtonModule, MdCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDxkOkQrB_O4HXTpG2x2V7JywoWRNGfY-4',
+      libraries: ['places']
+    }),
     CommonModule,
     SelectModule,
     ToastModule.forRoot(),

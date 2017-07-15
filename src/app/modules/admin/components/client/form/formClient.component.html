@@ -118,7 +118,9 @@
                     <div class="form-group">
                         <label for="address" class="control-label col-md-3">Địa chỉ</label>
                         <div class="col-md-4">
-                            <input formControlName="address" [(ngModel)]="objData.address" id="address" size="16" type="text" class="form-control">
+                            <app-address ngDefaultControl formControlName="address" [(ngModel)]="objData.address"></app-address>
+
+                            <!-- <input formControlName="address" [(ngModel)]="objData.address" id="address" size="16" type="text" class="form-control"> -->
                             <p class="error-message" 
                                 *ngIf="objForm.controls.address.errors?.required && submited">
                                 Vui lòng nhập địa chỉ
@@ -219,6 +221,7 @@
                                 class="form-control form-control-inline input-medium" 
                                 size="16"  type="text" value="" />
                         </div>
+                            
                     </div>
                     
                 </div>

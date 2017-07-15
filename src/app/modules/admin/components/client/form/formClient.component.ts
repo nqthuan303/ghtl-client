@@ -16,19 +16,19 @@ declare var App: any;
 
 @Component({
     moduleId: module.id,
-    selector: 'admin-form-client',
+    selector: 'app-admin-form-client',
     templateUrl: './formClient.component.html'
 })
-export class FormClientComponent {
+export class FormClientComponent implements OnInit {
 
     objForm: FormGroup;
     objData: ClientModel = new ClientModel();
     submited: boolean;
     districtList: Array<DistrictModel> = new Array<DistrictModel>();
     wardList: Array<WardModel> = new Array<WardModel>();
-    action: string = 'add';
+    action: string;
     params: Params;
-    isWardListAvailable: boolean = false;
+    isWardListAvailable: boolean;
 
     constructor(
         @Inject(FormBuilder) formBuilder: FormBuilder,
@@ -38,6 +38,9 @@ export class FormClientComponent {
         vcr: ViewContainerRef,
         private activatedRoute: ActivatedRoute
     ) {
+
+        this.action = 'add';
+        this.isWardListAvailable = false;
         this.submited = false;
         this.toastr.setRootViewContainerRef(vcr);
 
@@ -45,7 +48,7 @@ export class FormClientComponent {
             'name': ['', [Validators.required]],
             'contact_name': ['', [Validators.required]],
             'phone_number': ['', [Validators.required, CustomValidators.phone('vi-VN')]],
-            'phone_number_2': ['',[CustomValidators.phone('vi-VN')]],
+            'phone_number_2': ['', [CustomValidators.phone('vi-VN')]],
             'district_id': ['', [Validators.required]],
             'ward_id': [''],
             'address': ['', [Validators.required]],
@@ -67,7 +70,7 @@ export class FormClientComponent {
             this.action = 'update';
             this.objData = this.activatedRoute.snapshot.data['dataResolve'];
 
-            let $this = this;
+            const $this = this;
             this.getWardList(this.objData.district_id).then(function (result) {
                 $this.isWardListAvailable = true;
             });
@@ -83,7 +86,7 @@ export class FormClientComponent {
     }
 
     selectDistrict(districtId: string) {
-        let $this = this;
+        const $this = this;
         this.getWardList(districtId).then(function (result) {
             $this.isWardListAvailable = true;
         });
@@ -111,7 +114,7 @@ export class FormClientComponent {
             App.blockUI();
             this.service.add(this.objData).then((result) => {
                 App.unblockUI();
-                if (result.statusCode == 0) {
+                if (result.statusCode === 0) {
                     this.toastr.success('Thêm khách hàng thành công!', result.message);
                     this.objForm.reset();
                 }
@@ -121,7 +124,7 @@ export class FormClientComponent {
         if (this.action === 'update') {
             App.blockUI();
             this.service.update(this.objData).then((result) => {
-                if (result.statusCode == 0) {
+                if (result.statusCode === 0) {
                     this.toastr.success('Cập nhật thông tin khách hàng thành công!', result.message)
                 } else {
                     this.toastr.error('Đã xảy ra lỗi trong quá trình cập nhật!', result.message)

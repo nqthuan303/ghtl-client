@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AuthGuard } from './auth-guard.service';
-
+import 'hammerjs';
 
 @NgModule({
   bootstrap: [AppComponent],
